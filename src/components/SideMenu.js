@@ -11,23 +11,25 @@ import {
 import { images, colors, globalStyle } from '../res';
 
 var menuData = [
-    { name: 'Add Estimation', icon: '', action: 'EstimationPage' },
-    { name: 'View Estimation', icon: '', action: 'ViewEstimationPage' },
-    { name: 'Exchange Product', icon: '', action: 'ExchangeProduct' },
-    { name: 'Sale Product', icon: '', action: 'SalesPage' },
-    { name: 'View Sales', icon: '', action: 'ViewSalesPage' },
-    { name: 'Logout', icon: '', action: 'LoginPage' },
+    { name: 'Dashboard', icon: '', action: 'DashboardPage' },
+    { name: 'Members', icon: '', action: 'MembersPage' },
+    { name: 'Permanent Projects', icon: '', action: 'PermanentProjectsPage' },
+    { name: 'Projects', icon: '', action: 'ProjectsPage' },
+    { name: 'About us', icon: '', action: 'AboutPage' },
+    { name: 'Contact us', icon: '', action: 'ContactPage' },
 ]
 
 const MenuRow = ({ item, onPress }) => {
     var IconName = item.icon;
     var MenuItemName = item.name;
-    const { sideMenuWrapper, sideMenu, sideMenuItemIcon } = styles;
-    return (<View style={sideMenuWrapper}>
-        <TouchableOpacity style={{ paddingLeft: 6 }} onPress={onPress}>
+    const { sideMenuWrapper, sideMenu, menuLeftWrap, menuIcon } = styles;
+    return (<TouchableOpacity style={sideMenuWrapper} onPress={onPress}>
+        <View style={menuLeftWrap}>
+            <Image source={images.icons.dashboard_List_icon} style={menuIcon} />
             <Text style={sideMenu}>{MenuItemName}</Text>
-        </TouchableOpacity>
-    </View>);
+        </View>
+        <Image source={images.icons.dashboard_Arrow_icon} style={menuIcon} />
+    </TouchableOpacity>);
 };
 
 class sideMenu extends Component {
@@ -42,43 +44,36 @@ class sideMenu extends Component {
         }
     }
     render() {
-        const { container, header, sideMenuImage, selectImage, sideMenuHeader, sideMenuTitle, sideSubMenuTitle,
+        const { sideMenuWrap, header, sideMenuImage, selectImage, sideMenuHeader, sideMenuTitle, sideSubMenuTitle,
             sideSubMenuPickerTitle } = styles;
         return (
-            <View style={container}>
-                <View style={header}>
-                    <View style={sideMenuImage}>
-                        {/* <Image
-                            style={selectImage}
-                            source={images.sidebar.logo}
-                        /> */}
-                    </View>
-                    <View style={sideMenuHeader}>
-                        <Text style={sideMenuTitle}>Sumangalee Jewellers</Text>
-                        <Text style={sideSubMenuTitle}>{this.props.employeeDetail ? this.props.employeeDetail.user_detail.name : null} |  {this.props.employeeDetail ? this.props.employeeDetail.user_detail.mobile : null}</Text>
-                    </View>
-                </View>
-
-                <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={sideMenuWrap}>
+                <View style={styles.topSplit} />
+                <View style={styles.bottomSplit}>
                     {menuData.map((item) => {
                         return <MenuRow item={item} onPress={() => this.sideMenuAction(item)} />
                     })}
-                </ScrollView>
+                </View>
+
             </View>
         )
     }
 }
 const styles = StyleSheet.create({
-    container: {
+    sideMenuWrap: {
         flex: 1,
-        flexDirection: 'column',
-        borderRightColor: colors.Black,
-        borderRightWidth: 1,
-        minHeight: Dimensions.get('window').height,
+        backgroundColor: colors.primaryColor,
+    },
+    topSplit: {
+        flex: 1.5,
+    },
+    bottomSplit: {
+        flex: 8.5,
+        paddingLeft: 15,
+        paddingRight: 15,
     },
     header: {
         padding: 10,
-        height: 100,
         flexDirection: 'row',
         backgroundColor: colors.Primary,
         borderBottomColor: colors.DrawerShadow,
@@ -115,16 +110,27 @@ const styles = StyleSheet.create({
         fontSize: 15,
     },
     sideMenuWrapper: {
-        borderBottomColor: colors.Primary,
-        borderBottomWidth: 2,
-        padding: 12,
-        flex: 1,
+        borderRadius: 50,
+        alignItems:"center",
+        justifyContent:'space-between',
         flexDirection: 'row',
+        backgroundColor: '#fff',
+        marginTop: 15,
+    },
+    menuLeftWrap: {
+        flexDirection: 'row',
+        alignItems:'center'
+    },
+    menuIcon: {
+        width: 40,
+        height: 40,
+        borderRadius: 50
     },
     sideMenu: {
         paddingLeft: 5,
+        marginLeft: 10,
         color: colors.SidebarFontColor,
-        fontSize: 22,
+        fontSize: 17,
     },
     sideMenuItemIcon: {
         alignSelf: "center",

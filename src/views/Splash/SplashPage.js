@@ -8,7 +8,8 @@ class SplashPage extends Component {
     }
     componentDidMount() {
         this.spring()
-        setTimeout(() => {
+        this.timerHandle = setTimeout(() => {
+            this.props.navigation.navigate('Drawer');
         }, 3000);
     }
     spring() {
@@ -19,6 +20,12 @@ class SplashPage extends Component {
                 friction: 1,
             }
         ).start()
+    }
+    componentWillUnmount() {
+        if (this.timerHandle) {                  // ***
+            clearTimeout(this.timerHandle);      // ***
+            this.timerHandle = 0;                // ***
+        }
     }
     render() {
         return (
