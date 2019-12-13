@@ -14,6 +14,9 @@ import {
     Image
 } from 'react-native';
 
+import { SearchIcon } from './common/Icons'
+import { PLACE_HOLDERS } from '../res/strings'
+
 export default class MembersComponent extends Component {
 
     constructor(props) {
@@ -108,16 +111,26 @@ export default class MembersComponent extends Component {
             </View>
         )
     }
+
     render() {
         const { membersList } = this.state;
 
         return (
-            <FlatList
-                style={{ marginTop: 10 }}
-                data={membersList}
-                renderItem={this.memberListRender}
-                keyExtractor={(item, index) => ("memberList" + index)}
-            />
+            <Fragment>
+                <View style={styles.searchInputView}>
+                    <TextInput style={styles.searchInput}
+                        placeholder={PLACE_HOLDERS.MEMBER_SEARCH}
+                    />
+                    <SearchIcon style={styles.searchIcon} />
+                </View>
+
+                <FlatList
+                    style={{ marginTop: 10 }}
+                    data={membersList}
+                    renderItem={this.memberListRender}
+                    keyExtractor={(item, index) => ("memberList" + index)}
+                />
+            </Fragment>
         )
     }
 }
@@ -126,9 +139,32 @@ const styles = StyleSheet.create({
     baseView: {
         backgroundColor: "#eeeeee"
     },
+    searchInput: {
+        backgroundColor: "#ffffff",
+        borderRadius: 10,
+        height: 40,
+        width:'100%'
+    },
+    searchInputView: {
+        paddingTop:15,
+        paddingLeft:15,
+        paddingRight:15,
+        alignItems:'center',
+        flexDirection:'row',
+    },
+    searchIcon: {
+        position: "absolute",
+        // padding: 5,
+        right: 10,
+        top: -10,
+        
+        height: 20,
+        width: 20,
+        // zIndex:10
+    },
     memberView: {
         backgroundColor: "#ffffff",
-        height: 190,
+        height: 200,
         marginLeft: 15,
         marginRight: 15,
         marginBottom: 10,

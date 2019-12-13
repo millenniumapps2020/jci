@@ -1,4 +1,8 @@
-export const globalStyle = {
+
+import React from 'react'
+import { StyleSheet } from 'react-native'
+
+export const globalStyle = StyleSheet.create({
     /* example link */
     // textStyle:{
     // fontSize: 16
@@ -35,5 +39,5 @@ export const globalStyle = {
     rowCenter: {
         flexDirection: 'row',
     },
-};
+});
 
