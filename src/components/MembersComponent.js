@@ -14,8 +14,10 @@ import {
     Image
 } from 'react-native';
 
+import { colors } from '../res/colors'
 import { SearchIcon } from './common/Icons'
 import { PLACE_HOLDERS } from '../res/strings'
+import { images } from '../res/images'
 
 export default class MembersComponent extends Component {
 
@@ -34,36 +36,36 @@ export default class MembersComponent extends Component {
                     birthDay: "30 Jun 1995",
                     wedding: "12 Mar 2022"
                 },
-                {
-                    name: "Velmurugan",
-                    designation: "Human Resource",
-                    bloodGroup: "B positive",
-                    phNo: "7502572509",
-                    address: "Mayiladumparai, Theni-Dt",
-                    email: "vel@gmail.com",
-                    birthDay: "30 Jun 1995",
-                    wedding: "12 Mar 2022"
-                },
-                {
-                    name: "Ramesh A",
-                    designation: "UI/UX",
-                    bloodGroup: "AB positive",
-                    phNo: "7502572509",
-                    address: "Mayiladumparai, Theni-Dt",
-                    email: "baburam@gmail.com",
-                    birthDay: "30 Jun 1995",
-                    wedding: "12 Mar 2022"
-                },
-                {
-                    name: "Karthick",
-                    designation: "Civil",
-                    bloodGroup: "A positive",
-                    phNo: "7502572509",
-                    address: "Mayiladumparai, Theni-Dt",
-                    email: "karthick@gmail.com",
-                    birthDay: "30 Jun 1995",
-                    wedding: "12 Mar 2022"
-                }
+                // {
+                //     name: "Velmurugan",
+                //     designation: "Human Resource",
+                //     bloodGroup: "B positive",
+                //     phNo: "7502572509",
+                //     address: "Mayiladumparai, Theni-Dt",
+                //     email: "vel@gmail.com",
+                //     birthDay: "30 Jun 1995",
+                //     wedding: "12 Mar 2022"
+                // },
+                // {
+                //     name: "Ramesh A",
+                //     designation: "UI/UX",
+                //     bloodGroup: "AB positive",
+                //     phNo: "7502572509",
+                //     address: "Mayiladumparai, Theni-Dt",
+                //     email: "baburam@gmail.com",
+                //     birthDay: "30 Jun 1995",
+                //     wedding: "12 Mar 2022"
+                // },
+                // {
+                //     name: "Karthick",
+                //     designation: "Civil",
+                //     bloodGroup: "A positive",
+                //     phNo: "7502572509",
+                //     address: "Mayiladumparai, Theni-Dt",
+                //     email: "karthick@gmail.com",
+                //     birthDay: "30 Jun 1995",
+                //     wedding: "12 Mar 2022"
+                // }
             ]
         }
     }
@@ -95,18 +97,23 @@ export default class MembersComponent extends Component {
                     </View>
                 </View>
                 <View style={styles.bottomView}>
-                    <View style={styles.bottomDetails}>
-                        <View style={styles.bDayView}>
-                            <Image source={require('../res/images/icons/Cake_icon.png')} style={styles.bdayImg} />
-                            <Text style={styles.bottomLabel}>Birthday</Text>
-                            <Text style={styles.bottomVal}>{item.birthDay}</Text>
+                    <ImageBackground style={styles.bottomDetails}
+                        resizeMode="stretch"
+                        source={images.icons.birthDayTag}
+                    >
+                        <View style={styles.bottomViewContent}>
+                            <View style={styles.bDayView}>
+                                <Image source={images.icons.cakeIcon} style={styles.bdayImg} />
+                                <Text style={styles.bottomLabel}>Birthday</Text>
+                                <Text style={styles.bottomVal}>{item.birthDay}</Text>
+                            </View>
+                            <View style={styles.weddingView}>
+                                <Image source={images.icons.coupleIcon} style={styles.bdayImg} />
+                                <Text style={styles.bottomLabel}>Wedding anniversary</Text>
+                                <Text style={styles.bottomVal}>{item.wedding}</Text>
+                            </View>
                         </View>
-                        <View style={styles.weddingView}>
-                            <Image source={require('../res/images/icons/Couple_icon.png')} style={styles.bdayImg} />
-                            <Text style={styles.bottomLabel}>Wedding anniversary</Text>
-                            <Text style={styles.bottomVal}>{item.wedding}</Text>
-                        </View>
-                    </View>
+                    </ImageBackground>
                 </View>
             </View>
         )
@@ -116,7 +123,7 @@ export default class MembersComponent extends Component {
         const { membersList } = this.state;
 
         return (
-            <Fragment>
+            <View style={styles.baseView}>
                 <View style={styles.searchInputView}>
                     <TextInput style={styles.searchInput}
                         placeholder={PLACE_HOLDERS.MEMBER_SEARCH}
@@ -130,53 +137,46 @@ export default class MembersComponent extends Component {
                     renderItem={this.memberListRender}
                     keyExtractor={(item, index) => ("memberList" + index)}
                 />
-            </Fragment>
+            </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
     baseView: {
-        backgroundColor: "#eeeeee"
+        backgroundColor: colors.primaryBackground,
+        height: "100%",
+        width: "100%",
+        padding: 15
     },
     searchInput: {
         backgroundColor: "#ffffff",
         borderRadius: 10,
         height: 40,
-        width:'100%'
+        width: '100%'
     },
     searchInputView: {
-        paddingTop:15,
-        paddingLeft:15,
-        paddingRight:15,
-        alignItems:'center',
-        flexDirection:'row',
+        alignItems: 'center',
+        flexDirection: 'row',
     },
     searchIcon: {
         position: "absolute",
-        // padding: 5,
         right: 10,
         top: -10,
-        
+
         height: 20,
-        width: 20,
-        // zIndex:10
+        width: 20
     },
     memberView: {
         backgroundColor: "#ffffff",
-        height: 200,
-        marginLeft: 15,
-        marginRight: 15,
-        marginBottom: 10,
         borderRadius: 10,
-        display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
+        paddingTop: 15,
+        paddingRight: 15,
+        paddingBottom: 15
     },
     detailsView: {
-        flex: 7,
-        display: "flex",
-        flexDirection: "row",
-        padding: 15
+        flexDirection: "row"
     },
     detailsVal_name: {
         fontSize: 14,
@@ -186,22 +186,22 @@ const styles = StyleSheet.create({
         fontSize: 12
     },
     bottomView: {
-        display: "flex",
-        flex: 3
+        paddingTop: 10
+    },
+    bottomViewContent: {
+        flexDirection: "row"
     },
     bottomDetails: {
-        backgroundColor: "#21c4ff",
-        height: "70%",
-        display: "flex",
         flexDirection: "row",
-        justifyContent: "space-around"
+        justifyContent: "space-around",
+        alignItems: "center",
+        padding: 2
     },
     imageView: {
         flex: 2
     },
     detailsViewLeft: {
         flex: 3,
-        display: "flex",
         alignItems: "flex-start",
         justifyContent: "space-evenly"
     },
@@ -215,7 +215,8 @@ const styles = StyleSheet.create({
         color: "#949494"
     },
     bottomLabel: {
-        fontSize: 11
+        fontSize: 11,
+        color: "#ffffff"
     },
     bottomVal: {
         fontSize: 11,
@@ -223,17 +224,23 @@ const styles = StyleSheet.create({
     },
     bDayView: {
         flex: 4,
-        display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-around"
+        justifyContent: "space-around",
+        paddingLeft: 8,
+        paddingRight: 8,
+        paddingTop: 5,
+        paddingBottom: 5
     },
     weddingView: {
         flex: 6,
-        display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-around"
+        justifyContent: "space-around",
+        paddingLeft: 8,
+        paddingRight: 8,
+        paddingTop: 5,
+        paddingBottom: 5
     },
     bdayImg: {
         height: 25,

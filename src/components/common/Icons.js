@@ -1,9 +1,8 @@
 import React from 'react'
 
-import {
-    TouchableOpacity,
-    Image
-} from 'react-native';
+import { TouchableOpacity, Image } from 'react-native';
+
+import { images } from '../../res/images'
 
 export const SearchIcon = (props) => {
     return (
@@ -11,7 +10,7 @@ export const SearchIcon = (props) => {
             onPress={props.onPress ? props.onPress : null}
         >
             <Image style={props.style}
-                source={require('../../res/images/icons/Search_icon.png')} />
+                source={images.icons.searchIcon} />
         </TouchableOpacity>
     )
 }

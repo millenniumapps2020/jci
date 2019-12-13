@@ -7,9 +7,9 @@ import DrawerNavigator from '../../views/Drawer/drawerNavigation'
 
 export default createAppContainer(createSwitchNavigator({
     Drawer: DrawerNavigator,
-    // MemberPage: MemberPage,
+    MemberPage: MemberPage,
     Splash: SplashPage
 }, {
-    initialRouteName: 'Splash'
+    initialRouteName: 'MemberPage'
 }
 ));
