@@ -7,11 +7,8 @@ import {
     View, ScrollView, Image, TouchableOpacity, SafeAreaView,
     Dimensions
 } from 'react-native';
-import { connect } from 'react-redux';
-import styles from '../styles/sideMenuStyles';
-import { images } from '../../../res/';
-var { width, height } = Dimensions.get('window');
-
+// import styles from '../styles/sideMenuStyles';
+import { images, colors, globalStyle } from '../res';
 
 var menuData = [
     { name: 'Add Estimation', icon: '', action: 'EstimationPage' },
@@ -21,6 +18,7 @@ var menuData = [
     { name: 'View Sales', icon: '', action: 'ViewSalesPage' },
     { name: 'Logout', icon: '', action: 'LoginPage' },
 ]
+
 const MenuRow = ({ item, onPress }) => {
     var IconName = item.icon;
     var MenuItemName = item.name;
@@ -42,20 +40,18 @@ class sideMenu extends Component {
         } else {
             this.props.navigation.navigate(item.action)
         }
-        // alert(JSON.stringify(item))
     }
     render() {
         const { container, header, sideMenuImage, selectImage, sideMenuHeader, sideMenuTitle, sideSubMenuTitle,
             sideSubMenuPickerTitle } = styles;
-
         return (
             <View style={container}>
                 <View style={header}>
                     <View style={sideMenuImage}>
-                        <Image
+                        {/* <Image
                             style={selectImage}
                             source={images.sidebar.logo}
-                        />
+                        /> */}
                     </View>
                     <View style={sideMenuHeader}>
                         <Text style={sideMenuTitle}>Sumangalee Jewellers</Text>
@@ -72,5 +68,67 @@ class sideMenu extends Component {
         )
     }
 }
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        borderRightColor: colors.Black,
+        borderRightWidth: 1,
+        minHeight: Dimensions.get('window').height,
+    },
+    header: {
+        padding: 10,
+        height: 100,
+        flexDirection: 'row',
+        backgroundColor: colors.Primary,
+        borderBottomColor: colors.DrawerShadow,
+        borderBottomWidth: 1.5,
+        ...globalStyle.centerWrap
+    },
+    sideMenuImage: {
+        flex: 0.3,
+    },
+    selectImage: {
+        height: 80,
+        width: 80,
+        borderRadius: 90 / 2,
+        borderWidth: 4,
+        borderColor: colors.White,
+    },
+    sideMenuHeader: {
+        flex: 0.7,
+        flexDirection: 'column',
+    },
+    sideMenuTitle: {
+        color: colors.SidebarFontColor,
+        fontSize: 22,
+        paddingBottom: 3
+    },
+    sideSubMenuTitle: {
+        color: colors.DarkLight,
+        fontSize: 14,
+    },
+    sideSubMenuPickerTitle: {
+        color: colors.SidebarFontColor,
+        textAlign: 'right',
+        paddingRight: 20,
+        fontSize: 15,
+    },
+    sideMenuWrapper: {
+        borderBottomColor: colors.Primary,
+        borderBottomWidth: 2,
+        padding: 12,
+        flex: 1,
+        flexDirection: 'row',
+    },
+    sideMenu: {
+        paddingLeft: 5,
+        color: colors.SidebarFontColor,
+        fontSize: 22,
+    },
+    sideMenuItemIcon: {
+        alignSelf: "center",
+    }
 
+})
 export default sideMenu;

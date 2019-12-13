@@ -3,6 +3,11 @@ export const globalStyle = {
     // textStyle:{
     // fontSize: 16
     // }
+    container: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: 'center',
+    },
     centerWrap: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -10,7 +15,7 @@ export const globalStyle = {
     headerMenuIcon: {
         width: 30,
         height: 30,
-        marginRight:10
+        marginRight: 10
     },
     row: {
         flexDirection: 'row',
