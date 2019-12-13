@@ -6,7 +6,7 @@ import rootReducer from './rootReducer';
 
 const persistConfig = {
     key: 'root',
-    AsyncStorage,
+    storage: AsyncStorage,
     whitelist: []
 };
 const logger = createLogger();
