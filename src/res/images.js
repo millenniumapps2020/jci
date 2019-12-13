@@ -8,6 +8,10 @@ export const images = {
         logo: require('./images/common/logo.png')
     },
     icons: {
-        welcome_icon: require('./images/icons/welcome_icon.png')
+        welcome_icon: require('./images/icons/welcome_icon.png'),
+        searchIcon: require('./images/icons/Search_icon.png'),
+        cakeIcon: require('./images/icons/Cake_icon.png'),
+        coupleIcon: require('./images/icons/Couple_icon.png'),
+        birthDayTag: require('./images/icons/Birthday_Tag.png')
     }
 }
