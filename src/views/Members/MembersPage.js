@@ -77,8 +77,10 @@ export default class MembersComponent extends Component {
         return (
             <View key={'memberList' + index} style={styles.memberView}>
                 <View style={styles.detailsView}>
-                    <View style={styles.imageView}>
-
+                    <View style={[styles.imageView, globalStyle.centerWrap]}>
+                        <Image source={images.common.libraryImg_4}
+                            style={styles.memberImage}
+                        />
                     </View>
                     <View style={styles.detailsViewContent}>
                         <View style={[styles.detailsRow1, styles.detailsRow]}>
@@ -167,7 +169,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         height: 40,
         width: '100%',
-        paddingLeft: 15
+        paddingLeft: 15,
+        fontSize: 12
     },
     searchInputView: {
         marginTop: 10,
@@ -197,7 +200,7 @@ const styles = StyleSheet.create({
     },
     detailsVal_name: {
         fontSize: 15,
-        fontFamily:fonts.SemiBold
+        fontFamily: fonts.SemiBold
     },
     detailsVal: {
         fontSize: 12
@@ -275,5 +278,10 @@ const styles = StyleSheet.create({
     bdayImg: {
         height: 22,
         width: 22
+    },
+    memberImage: {
+        height: 78,
+        width: "75%",
+        borderRadius: 40
     }
 })

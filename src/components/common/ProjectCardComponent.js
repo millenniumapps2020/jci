@@ -19,41 +19,35 @@ import { images, globalStyle, fonts } from '../../res';
 export default class ProjectCardComponent extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
     }
 
-    goToDetails() {
-        alert(1)
-        // this.props.navigation.navigate('ProjectDetails')
-    }
-
-    listRender(data) {
+    listRender = (data) => {
         var item = data.item;
         var index = data.index;
         return (
-            <View key={'project' + index} style={styles.projectCard}>
-                <View style={[styles.imgView, globalStyle.centerWrap]}>
-                    <Image source={images.common.libraryImg_3} style={styles.memberImg} />
-                </View>
-                <View style={styles.contentView}>
-                    <Text style={styles.projectName}>{item.name}</Text>
-                    <View style={styles.locationView}>
-                        <Image source={images.icons.locationIcon}
-                            style={styles.locationImg}
-                        />
-                        <Text style={styles.location}>{item.location}</Text>
+            <TouchableOpacity onPress={() => this.props.cardPressed(item)}>
+                <View key={'project' + index} style={styles.projectCard}>
+                    <View style={[styles.imgView, globalStyle.centerWrap]}>
+                        <Image source={images.common.libraryImg_3} style={styles.projectImg} />
                     </View>
-                </View>
-                <View style={[styles.navigationView, globalStyle.centerWrap]}>
-                    <TouchableOpacity
-                        onPress={() => this.goToDetails()}
-                    >
+                    <View style={styles.contentView}>
+                        <Text style={styles.projectName}>{item.name}</Text>
+                        <View style={styles.locationView}>
+                            <Image source={images.icons.locationIcon}
+                                style={styles.locationImg}
+                            />
+                            <Text style={styles.location}>{item.location}</Text>
+                        </View>
+                    </View>
+                    <View style={[styles.navigationView, globalStyle.centerWrap]}>
+
                         <Image source={images.icons.detailsNavigateIcon}
                             style={styles.navigateImage}
                         />
-                    </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 
@@ -102,7 +96,7 @@ const styles = StyleSheet.create({
     },
     locationView: {
         flexDirection: "row",
-        alignItems:"center"
+        alignItems: "center"
     },
     locationImg: {
         width: 18,
@@ -113,7 +107,7 @@ const styles = StyleSheet.create({
         fontFamily: fonts.regular,
         paddingLeft: 10
     },
-    memberImg: {
+    projectImg: {
         height: 65,
         width: 65,
         borderRadius: 35

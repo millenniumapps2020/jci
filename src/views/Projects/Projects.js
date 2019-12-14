@@ -37,6 +37,10 @@ export default class Projects extends Component {
         }
     }
 
+    goToProjectDetails = (data) => {
+        this.props.navigation.navigate('ProjectDetails')
+    }
+
     render() {
         const { projectList } = this.state;
 
@@ -44,7 +48,7 @@ export default class Projects extends Component {
             <View style={globalStyle.fullView}>
                 <Header title={"Projects"} leftPressed={() => this.props.navigation.openDrawer()} />
                 <View style={globalStyle.bodyWrap}>
-                    <ProjectCard projectList={projectList}  />
+                    <ProjectCard projectList={projectList} cardPressed={this.goToProjectDetails} />
                 </View>
             </View>
         )

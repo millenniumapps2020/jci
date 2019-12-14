@@ -46,14 +46,17 @@ export default class PermanentProjects extends Component {
         }
     }
 
+    goToProjectDetails = (data) => {
+        this.props.navigation.navigate('ProjectDetails')
+    }
+    
     render() {
         const { projectList } = this.state;
-
         return (
             <View style={globalStyle.fullView}>
                 <Header title={"Permanent Projects"} leftPressed={() => this.props.navigation.openDrawer()} />
                 <View style={globalStyle.bodyWrap}>
-                    <ProjectCard projectList={projectList} />
+                    <ProjectCard projectList={projectList} cardPressed={this.goToProjectDetails} />
                 </View>
             </View>
         )

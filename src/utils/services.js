@@ -1,3 +1,4 @@
 export const services = {
-    getEvents:'api/events/'
+    getEvents:'api/events/',
+    
 }
