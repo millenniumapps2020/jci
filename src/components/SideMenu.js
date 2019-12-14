@@ -14,8 +14,8 @@ import { images, colors, globalStyle, fonts } from '../res';
 var menuData = [
     { name: 'Dashboard', icon: '', action: 'DashboardPage' },
     { name: 'Members', icon: '', action: 'MemberPage' },
-    { name: 'Permanent Projects', icon: '', action: 'ProjectPage' },
-    { name: 'Projects', icon: '', action: 'ProjectsPage' },
+    { name: 'Permanent Projects', icon: '', action: 'PermanentProjectPage' },
+    { name: 'Projects', icon: '', action: 'ProjectPage' },
     { name: 'About us', icon: '', action: 'AboutPage' },
     { name: 'Contact us', icon: '', action: 'ContactPage' },
 ]

@@ -14,11 +14,11 @@ import {
     Image
 } from 'react-native';
 
-import { colors } from '../res/colors'
-import { SearchIcon } from './common/Icons'
-import { PLACE_HOLDERS } from '../res/strings'
-import { images, globalStyle, fonts } from '../res';
-import Header from './Header'
+import { colors } from '../../res'
+import { SearchIcon } from '../../components/common/Icons'
+import { PLACE_HOLDERS } from '../../res/strings'
+import { images, globalStyle, fonts } from '../../res';
+import Header from '../../components/Header'
 
 export default class MembersComponent extends Component {
 
@@ -162,12 +162,6 @@ export default class MembersComponent extends Component {
 }
 
 const styles = StyleSheet.create({
-    baseView: {
-        backgroundColor: colors.primaryBackground,
-        height: "100%",
-        width: "100%",
-        padding: 15
-    },
     searchInput: {
         backgroundColor: "#ffffff",
         borderRadius: 10,

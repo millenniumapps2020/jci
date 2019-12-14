@@ -12,6 +12,9 @@ export const images = {
         menu: require('./images/icons/Menu_Icon.png'),
         date_icon: require('./images/icons/Date_icon.png'),
         time_icon: require('./images/icons/Time_icon.png'),
+        menu: require('./images/icons/Menu_ICon.png'),
+        date_icon: require('./images/icons/Date_icon.png'),
+        time_icon: require('./images/icons/Time_Icon.png'),
         location: require('./images/icons/Location.png'),
         dashboard_Arrow_icon: require('./images/icons/Dashboard_Arrow_icon.png'),
         dashboard_List_icon: require('./images/icons/Dashboard_List_icon.jpg'),
@@ -21,6 +24,9 @@ export const images = {
         coupleIcon: require('./images/icons/Couple_icon.png'),
         birthDayTag: require('./images/icons/Birthday_Tag.png'),
 
-        Contact_us_location_icon: require('./images/icons/Contact_us_location_icon.png')
+        Contact_us_location_icon: require('./images/icons/Contact_us_location_icon.png'),
+        
+        detailsNavigateIcon: require('./images/icons/View_icon.png'),
+        locationIcon: require('./images/icons/Location.png')
     }
 }

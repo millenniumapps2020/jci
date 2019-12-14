@@ -14,6 +14,8 @@ import {
     Image
 } from 'react-native';
 
+import { images, globalStyle, fonts } from '../../res';
+
 export default class ProjectCardComponent extends Component {
 
     constructor(props) {
@@ -29,13 +31,20 @@ export default class ProjectCardComponent extends Component {
 
                 </View>
                 <View style={styles.contentView}>
-                    <Text>{item.name}</Text>
-                    <View>
-                        <Text>{item.location}</Text>
+                    <Text style={styles.projectName}>{item.name}</Text>
+                    <View style={styles.locationView}>
+                        <Image source={images.icons.locationIcon}
+                            style={styles.locationImg}
+                        />
+                        <Text style={styles.location}>{item.location}</Text>
                     </View>
                 </View>
-                <View style={styles.navigationView}>
-
+                <View style={[styles.navigationView, globalStyle.centerWrap]}>
+                    <TouchableOpacity>
+                        <Image source={images.icons.detailsNavigateIcon}
+                            style={styles.navigateImage}
+                        />
+                    </TouchableOpacity>
                 </View>
             </View>
         )
@@ -59,16 +68,42 @@ const styles = StyleSheet.create({
     projectCard: {
         backgroundColor: "#ffffff",
         flexDirection: "row",
-        padding: 10,
-        borderRadius: 10
+        paddingTop: 18,
+        paddingBottom: 20,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderRadius: 10,
+        marginTop: 10
     },
     imgView: {
-        flex: 2
+        flex: 24
     },
     contentView: {
-        flex: 7
+        flex: 70
     },
     navigationView: {
-        flex: 1
+        flex: 6
+    },
+    navigateImage: {
+        height: 22,
+        width: 25
+    },
+    projectName: {
+        fontSize: 17,
+        fontFamily: fonts.SemiBold,
+        paddingBottom: 10
+    },
+    locationView: {
+        flexDirection: "row",
+        // paddingBottom: 20
+    },
+    locationImg: {
+        width: 18,
+        height: 25
+    },
+    location: {
+        fontSize: 12,
+        fontFamily: fonts.SemiBold,
+        paddingLeft: 10
     }
 })
