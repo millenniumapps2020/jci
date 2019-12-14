@@ -33,13 +33,23 @@ export default class PermanentProjects extends Component {
                 {
                     name: "Government school library maintenance",
                     location: "Erode Government School"
+                },
+                {
+                    name: "River maintenance",
+                    location: "Erode Highroad"
+                },
+                {
+                    name: "Government school library maintenance",
+                    location: "Erode Government School"
                 }
             ]
         }
     }
+
     goToProjectDetails = (data) => {
-        alert(1)
+        this.props.navigation.navigate('ProjectDetails')
     }
+    
     render() {
         const { projectList } = this.state;
         return (

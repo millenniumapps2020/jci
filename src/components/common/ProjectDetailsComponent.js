@@ -50,7 +50,7 @@ export default class ProjectDetailsComponent extends Component {
                         At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque.
                         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus,
                         Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
-                </Text>
+                    </Text>
 
                     <View style={styles.hrLine}></View>
 
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
         textAlign: "justify"
     },
     galleryView: {
-
+        width: "100%"
     },
     galleryText: {
         fontSize: 16,
@@ -154,12 +154,13 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     imgView: {
+        width: "100%",
         flexDirection: "row",
-        paddingBottom: 10
+        paddingBottom: 10,
     },
     image: {
-        height: 90,
-        width: 90,
+        height: 70,
+        width: "25%",
         margin: 1
     }
 })
