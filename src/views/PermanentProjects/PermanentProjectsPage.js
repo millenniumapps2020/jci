@@ -33,6 +33,14 @@ export default class PermanentProjects extends Component {
                 {
                     name: "Government school library maintenance",
                     location: "Erode Government School"
+                },
+                {
+                    name: "River maintenance",
+                    location: "Erode Highroad"
+                },
+                {
+                    name: "Government school library maintenance",
+                    location: "Erode Government School"
                 }
             ]
         }

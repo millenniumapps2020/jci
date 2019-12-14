@@ -32,8 +32,8 @@ export default class ProjectCardComponent extends Component {
         var index = data.index;
         return (
             <View key={'project' + index} style={styles.projectCard}>
-                <View style={styles.imgView}>
-
+                <View style={[styles.imgView, globalStyle.centerWrap]}>
+                    <Image source={images.common.libraryImg_3} style={styles.memberImg} />
                 </View>
                 <View style={styles.contentView}>
                     <Text style={styles.projectName}>{item.name}</Text>
@@ -77,16 +77,16 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         paddingTop: 18,
         paddingBottom: 20,
-        paddingLeft: 10,
+        // paddingLeft: 5,
         paddingRight: 10,
         borderRadius: 10,
         marginTop: 10
     },
     imgView: {
-        flex: 24
+        flex: 27,
     },
     contentView: {
-        flex: 70
+        flex: 67
     },
     navigationView: {
         flex: 6
@@ -96,21 +96,26 @@ const styles = StyleSheet.create({
         width: 25
     },
     projectName: {
-        fontSize: 17,
+        fontSize: 13,
         fontFamily: fonts.SemiBold,
         paddingBottom: 10
     },
     locationView: {
         flexDirection: "row",
-        // paddingBottom: 20
+        alignItems:"center"
     },
     locationImg: {
         width: 18,
         height: 25
     },
     location: {
-        fontSize: 12,
-        fontFamily: fonts.SemiBold,
+        fontSize: 10,
+        fontFamily: fonts.regular,
         paddingLeft: 10
+    },
+    memberImg: {
+        height: 65,
+        width: 65,
+        borderRadius: 35
     }
 })
