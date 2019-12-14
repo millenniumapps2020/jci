@@ -55,9 +55,9 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     headerTitle: {
-        fontSize: 22,
+        fontSize: 24,
         color: colors.primaryTextColor,
-        fontFamily:fonts.SemiBold
+        fontFamily: fonts.SemiBold
     },
     headerSubTitle: {
         fontSize: 12,

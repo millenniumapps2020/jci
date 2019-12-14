@@ -18,42 +18,33 @@ import { images, globalStyle, fonts } from '../../res';
 
 export default class ProjectCardComponent extends Component {
 
-    constructor(props) {
-        super(props)
-    }
 
-    goToDetails() {
-        alert(1)
-        // this.props.navigation.navigate('ProjectDetails')
-    }
-
-    listRender(data) {
+    listRender = (data) => {
         var item = data.item;
         var index = data.index;
         return (
-            <View key={'project' + index} style={styles.projectCard}>
-                <View style={styles.imgView}>
+            <TouchableOpacity onPress={() => this.props.cardPressed(item)}>
+                <View key={'project' + index} style={styles.projectCard}>
+                    <View style={styles.imgView}>
 
-                </View>
-                <View style={styles.contentView}>
-                    <Text style={styles.projectName}>{item.name}</Text>
-                    <View style={styles.locationView}>
-                        <Image source={images.icons.locationIcon}
-                            style={styles.locationImg}
-                        />
-                        <Text style={styles.location}>{item.location}</Text>
                     </View>
-                </View>
-                <View style={[styles.navigationView, globalStyle.centerWrap]}>
-                    <TouchableOpacity
-                        onPress={() => this.goToDetails()}
-                    >
+                    <View style={styles.contentView}>
+                        <Text style={styles.projectName}>{item.name}</Text>
+                        <View style={styles.locationView}>
+                            <Image source={images.icons.locationIcon}
+                                style={styles.locationImg}
+                            />
+                            <Text style={styles.location}>{item.location}</Text>
+                        </View>
+                    </View>
+                    <View style={[styles.navigationView, globalStyle.centerWrap]}>
+
                         <Image source={images.icons.detailsNavigateIcon}
                             style={styles.navigateImage}
                         />
-                    </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 
