@@ -36,36 +36,36 @@ export default class MembersComponent extends Component {
                     birthDay: "30 Jun 1995",
                     wedding: "12 Mar 2022"
                 },
-                // {
-                //     name: "Velmurugan",
-                //     designation: "Human Resource",
-                //     bloodGroup: "B positive",
-                //     phNo: "7502572509",
-                //     address: "Mayiladumparai, Theni-Dt",
-                //     email: "vel@gmail.com",
-                //     birthDay: "30 Jun 1995",
-                //     wedding: "12 Mar 2022"
-                // },
-                // {
-                //     name: "Ramesh A",
-                //     designation: "UI/UX",
-                //     bloodGroup: "AB positive",
-                //     phNo: "7502572509",
-                //     address: "Mayiladumparai, Theni-Dt",
-                //     email: "baburam@gmail.com",
-                //     birthDay: "30 Jun 1995",
-                //     wedding: "12 Mar 2022"
-                // },
-                // {
-                //     name: "Karthick",
-                //     designation: "Civil",
-                //     bloodGroup: "A positive",
-                //     phNo: "7502572509",
-                //     address: "Mayiladumparai, Theni-Dt",
-                //     email: "karthick@gmail.com",
-                //     birthDay: "30 Jun 1995",
-                //     wedding: "12 Mar 2022"
-                // }
+                {
+                    name: "Velmurugan",
+                    designation: "Human Resource",
+                    bloodGroup: "B positive",
+                    phNo: "7502572509",
+                    address: "Mayiladumparai, Theni-Dt",
+                    email: "vel@gmail.com",
+                    birthDay: "30 Jun 1995",
+                    wedding: "12 Mar 2022"
+                },
+                {
+                    name: "Ramesh A",
+                    designation: "UI/UX",
+                    bloodGroup: "AB positive",
+                    phNo: "7502572509",
+                    address: "Mayiladumparai, Theni-Dt",
+                    email: "baburam@gmail.com",
+                    birthDay: "30 Jun 1995",
+                    wedding: "12 Mar 2022"
+                },
+                {
+                    name: "Karthick",
+                    designation: "Civil",
+                    bloodGroup: "A positive",
+                    phNo: "7502572509",
+                    address: "Mayiladumparai, Theni-Dt",
+                    email: "karthick@gmail.com",
+                    birthDay: "30 Jun 1995",
+                    wedding: "12 Mar 2022"
+                }
             ]
         }
     }
@@ -79,21 +79,37 @@ export default class MembersComponent extends Component {
                     <View style={styles.imageView}>
 
                     </View>
-                    <View style={styles.detailsViewLeft}>
-                        <Text style={styles.label}>Name</Text>
-                        <Text style={styles.detailsVal_name}>{item.name}</Text>
-                        <Text style={styles.label}>Blood Group</Text>
-                        <Text style={styles.detailsVal}>{item.bloodGroup}</Text>
-                        <Text style={styles.label}>Address</Text>
-                        <Text style={styles.detailsVal}>{item.address}</Text>
-                    </View>
-                    <View style={styles.detailsViewRigth}>
-                        <Text style={styles.label}>Designation</Text>
-                        <Text style={styles.detailsVal}>{item.designation}</Text>
-                        <Text style={styles.label}>Phone number</Text>
-                        <Text style={styles.detailsVal}>{item.phNo}</Text>
-                        <Text style={styles.label}>E-mail address</Text>
-                        <Text style={styles.detailsVal}>{item.email}</Text>
+                    <View style={styles.detailsViewContent}>
+                        <View style={[styles.detailsRow1, styles.detailsRow]}>
+                            <View style={styles.detailsLeft}>
+                                <Text style={styles.label}>Name</Text>
+                                <Text style={styles.detailsVal_name}>{item.name}</Text>
+                            </View>
+                            <View style={styles.detailsRight}>
+                                <Text style={styles.label}>Designation</Text>
+                                <Text style={styles.detailsVal}>{item.designation}</Text>
+                            </View>
+                        </View>
+                        <View style={[styles.detailsRow2, styles.detailsRow]}>
+                            <View style={styles.detailsLeft}>
+                                <Text style={styles.label}>Blood Group</Text>
+                                <Text style={styles.detailsVal}>{item.bloodGroup}</Text>
+                            </View>
+                            <View style={styles.detailsRight}>
+                                <Text style={styles.label}>Phone number</Text>
+                                <Text style={styles.detailsVal}>{item.phNo}</Text>
+                            </View>
+                        </View>
+                        <View style={[styles.detailsRow2, styles.detailsRow]}>
+                            <View style={styles.detailsLeft}>
+                                <Text style={styles.label}>Address</Text>
+                                <Text style={styles.detailsVal}>{item.address}</Text>
+                            </View>
+                            <View style={styles.detailsRight}>
+                                <Text style={styles.label}>E-mail address</Text>
+                                <Text style={styles.detailsVal}>{item.email}</Text>
+                            </View>
+                        </View>
                     </View>
                 </View>
                 <View style={styles.bottomView}>
@@ -132,7 +148,6 @@ export default class MembersComponent extends Component {
                 </View>
 
                 <FlatList
-                    style={{ marginTop: 10 }}
                     data={membersList}
                     renderItem={this.memberListRender}
                     keyExtractor={(item, index) => ("memberList" + index)}
@@ -153,11 +168,13 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffffff",
         borderRadius: 10,
         height: 40,
-        width: '100%'
+        width: '100%',
+        paddingLeft: 15
     },
     searchInputView: {
         alignItems: 'center',
         flexDirection: 'row',
+        marginBottom: 10
     },
     searchIcon: {
         position: "absolute",
@@ -173,13 +190,14 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         paddingTop: 15,
         paddingRight: 15,
-        paddingBottom: 15
+        paddingBottom: 15,
+        marginBottom: 10
     },
     detailsView: {
         flexDirection: "row"
     },
     detailsVal_name: {
-        fontSize: 14,
+        fontSize: 15,
         fontWeight: "bold"
     },
     detailsVal: {
@@ -198,29 +216,42 @@ const styles = StyleSheet.create({
         padding: 2
     },
     imageView: {
-        flex: 2
+        flex: 3
     },
-    detailsViewLeft: {
-        flex: 3,
-        alignItems: "flex-start",
-        justifyContent: "space-evenly"
+    detailsViewContent: {
+        flex: 7,
     },
-    detailsViewRigth: {
-        flex: 3,
-        alignItems: "flex-start",
-        justifyContent: "space-evenly"
+    detailsRow: {
+        paddingBottom: 5
+    },
+    detailsRow1: {
+        flexDirection: "row"
+    },
+    detailsRow2: {
+        flexDirection: "row"
+    },
+    detailsRow3: {
+        flexDirection: "row"
+    },
+    detailsLeft: {
+        flex: 1
+    },
+    detailsRight: {
+        flex: 1
     },
     label: {
         fontSize: 11,
         color: "#949494"
     },
     bottomLabel: {
-        fontSize: 11,
-        color: "#ffffff"
+        fontSize: 10,
+        color: "#ffffff",
+        fontWeight: "bold"
     },
     bottomVal: {
-        fontSize: 11,
-        color: "#ffffff"
+        fontSize: 10,
+        color: "#ffffff",
+        fontWeight: "bold"
     },
     bDayView: {
         flex: 4,
@@ -243,7 +274,7 @@ const styles = StyleSheet.create({
         paddingBottom: 5
     },
     bdayImg: {
-        height: 25,
-        width: 25
+        height: 22,
+        width: 22
     }
 })
