@@ -1,17 +1,8 @@
 import React, { Fragment, Component } from 'react'
 
 import {
-    SafeAreaView,
     StyleSheet,
-    ScrollView,
     View,
-    ImageBackground,
-    Text,
-    TextInput,
-    FlatList,
-    StatusBar,
-    TouchableOpacity,
-    Image
 } from 'react-native';
 
 import ProjectCard from '../../components/common/ProjectCardComponent'

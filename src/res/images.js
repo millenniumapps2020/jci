@@ -5,7 +5,11 @@ export const images = {
     //     plus_icon: require('./images/icons/plus_icon.png')
     // }
     common: {
-        logo: require('./images/common/logo.png')
+        logo: require('./images/common/logo.png'),
+        libraryImg_1: require('./images/common/library_1.jpg'),
+        libraryImg_2: require('./images/common/library_2.jpg'),
+        libraryImg_3: require('./images/common/library_3.jpeg'),
+        libraryImg_4: require('./images/common/library_4.jpeg')
     },
     icons: {
         welcome_icon: require('./images/icons/welcome_icon.png'),
@@ -21,6 +25,8 @@ export const images = {
         coupleIcon: require('./images/icons/Couple_icon.png'),
         birthDayTag: require('./images/icons/Birthday_Tag.png'),
         detailsNavigateIcon: require('./images/icons/View_icon.png'),
-        locationIcon: require('./images/icons/Location.png')
+        locationIcon: require('./images/icons/Location.png'),
+
+      
     }
 }
