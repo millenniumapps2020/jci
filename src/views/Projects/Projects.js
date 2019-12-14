@@ -14,9 +14,10 @@ import {
     Image
 } from 'react-native';
 
-import ProjectCard from './common/ProjectCardComponent'
+import ProjectCard from '../../components/common/ProjectCardComponent'
 
-import { colors } from '../res/colors'
+import { colors, globalStyle } from '../../res'
+import Header from '../../components/Header'
 
 export default class Projects extends Component {
 
@@ -28,7 +29,11 @@ export default class Projects extends Component {
                 {
                     name: "Government school library maintenance",
                     location: "Erode Government School"
-                }
+                },
+                {
+                    name: "River maintenance",
+                    location: "Erode Highroad"
+                },
             ]
         }
     }
@@ -37,19 +42,16 @@ export default class Projects extends Component {
         const { projectList } = this.state;
 
         return (
-            <View style={styles.baseView}>
-                <ProjectCard projectList={projectList} />
+            <View style={globalStyle.fullView}>
+                <Header title={"Projects"} leftPressed={() => this.props.navigation.openDrawer()} />
+                <View style={globalStyle.bodyWrap}>
+                    <ProjectCard projectList={projectList} />
+                </View>
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    baseView: {
-        backgroundColor: colors.primaryBackground,
-        height: "100%",
-        width: "100%",
-        padding: 15
-    },
 
 })
