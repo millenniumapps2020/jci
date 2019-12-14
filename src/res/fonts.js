@@ -1,4 +1,8 @@
 export const fonts = {
     /* example link */
-    // 'Poppins-Black': 'Poppins-Black'
+    regular: 'OpenSans-Regular',
+    SemiBold: 'OpenSans-SemiBold',
+    Light: 'OpenSans-Light',
+    Italic: 'OpenSans-Italic',
+    Bold: 'OpenSans-Bold',
 }

@@ -14,6 +14,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		179DD7239E409E56D34A9E4D /* libPods-jci.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 275BF5798E13D41EF6050DC8 /* libPods-jci.a */; };
 		1CA6152BBB4374FF8A3BCE0B /* libPods-jci-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 335D02F97166E09D536265C1 /* libPods-jci-tvOSTests.a */; };
+		28CBC72B23A4CF3B00849014 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 28CBC72A23A4CF3A00849014 /* fonts */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -53,6 +54,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = jci/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = jci/main.m; sourceTree = "<group>"; };
 		275BF5798E13D41EF6050DC8 /* libPods-jci.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jci.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		28CBC72A23A4CF3A00849014 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = ../src/res/fonts; sourceTree = "<group>"; };
 		2D024C12CB563304D45C4EE3 /* Pods-jci-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jci-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-jci-tvOSTests/Pods-jci-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* jci-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "jci-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* jci-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "jci-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +127,7 @@
 		13B07FAE1A68108700A75B9A /* jci */ = {
 			isa = PBXGroup;
 			children = (
+				28CBC72A23A4CF3A00849014 /* fonts */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -194,7 +197,6 @@
 				7BA3CB4E8736FB1383078CCC /* Pods-jciTests.debug.xcconfig */,
 				A8A8654606A57A1A97F87B23 /* Pods-jciTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -308,6 +310,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -336,6 +339,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28CBC72B23A4CF3B00849014 /* fonts in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);

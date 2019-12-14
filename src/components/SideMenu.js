@@ -8,15 +8,16 @@ import {
     Dimensions
 } from 'react-native';
 // import styles from '../styles/sideMenuStyles';
-import { images, colors, globalStyle } from '../res';
+import { images, colors, globalStyle, fonts } from '../res';
+
 
 var menuData = [
-    { name: 'Dashboard', icon: '', action: 'DashboardPage' },
-    { name: 'Members', icon: '', action: 'MembersPage' },
-    { name: 'Permanent Projects', icon: '', action: 'PermanentProjectsPage' },
+    { name: 'Dashboard', icon: '', action: 'Dashboard' },
+    { name: 'Members', icon: '', action: 'MemberPage' },
+    { name: 'Permanent Projects', icon: '', action: 'ProjectPage' },
     { name: 'Projects', icon: '', action: 'ProjectsPage' },
-    { name: 'About us', icon: '', action: 'AboutPage' },
-    { name: 'Contact us', icon: '', action: 'ContactPage' },
+    { name: 'About us', icon: '', action: 'WelcomePage' },
+    { name: 'Contact us', icon: '', action: 'WelcomePage' },
 ]
 
 const MenuRow = ({ item, onPress }) => {
@@ -131,6 +132,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         color: colors.SidebarFontColor,
         fontSize: 17,
+        fontFamily:fonts.SemiBold
     },
     sideMenuItemIcon: {
         alignSelf: "center",

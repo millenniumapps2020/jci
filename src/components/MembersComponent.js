@@ -17,7 +17,8 @@ import {
 import { colors } from '../res/colors'
 import { SearchIcon } from './common/Icons'
 import { PLACE_HOLDERS } from '../res/strings'
-import { images } from '../res/images'
+import { images, globalStyle, fonts } from '../res';
+import Header from './Header'
 
 export default class MembersComponent extends Component {
 
@@ -139,19 +140,22 @@ export default class MembersComponent extends Component {
         const { membersList } = this.state;
 
         return (
-            <View style={styles.baseView}>
-                <View style={styles.searchInputView}>
-                    <TextInput style={styles.searchInput}
-                        placeholder={PLACE_HOLDERS.MEMBER_SEARCH}
-                    />
-                    <SearchIcon style={styles.searchIcon} />
-                </View>
+            <View style={globalStyle.fullView}>
+                <Header title={"Members"} leftPressed={() => this.props.navigation.openDrawer()} />
+                <View style={globalStyle.bodyWrap}>
+                    <View style={styles.searchInputView}>
+                        <TextInput style={styles.searchInput}
+                            placeholder={PLACE_HOLDERS.MEMBER_SEARCH}
+                        />
+                        <SearchIcon style={styles.searchIcon} />
+                    </View>
 
-                <FlatList
-                    data={membersList}
-                    renderItem={this.memberListRender}
-                    keyExtractor={(item, index) => ("memberList" + index)}
-                />
+                    <FlatList
+                        data={membersList}
+                        renderItem={this.memberListRender}
+                        keyExtractor={(item, index) => ("memberList" + index)}
+                    />
+                </View>
             </View>
         )
     }
@@ -172,6 +176,7 @@ const styles = StyleSheet.create({
         paddingLeft: 15
     },
     searchInputView: {
+        marginTop: 10,
         alignItems: 'center',
         flexDirection: 'row',
         marginBottom: 10
@@ -198,7 +203,7 @@ const styles = StyleSheet.create({
     },
     detailsVal_name: {
         fontSize: 15,
-        fontWeight: "bold"
+        fontFamily:fonts.SemiBold
     },
     detailsVal: {
         fontSize: 12

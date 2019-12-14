@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import { images, colors, globalStyle } from '../../res/';
+import { images, colors, globalStyle, fonts } from '../../res/';
 
 import Header from '../../components/Header'
 import CardView from '../../components/CardView'
@@ -40,7 +40,8 @@ const styles = StyleSheet.create({
     eventTitleText: {
         fontSize: 15,
         color: colors.headingColor,
-        fontWeight:'600'
+        fontWeight:'600',
+        fontFamily:fonts.SemiBold
     },
 })
 export default (DashboardPage);

@@ -6,6 +6,7 @@ import sideMenu from '../../components/SideMenu'
 import ProjectPage from '../../components/Projects'
 import WelcomePage from '../Example/WelcomePage'
 import MemberPage from '../../components/MembersComponent'
+import DashboardPage from '../Dashboard/DashboardPage'
 
 export default createDrawerNavigator({
     Dashboard: DashboardPage,

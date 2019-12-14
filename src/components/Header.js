@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import { colors, images } from '../res';
+import { colors, images, fonts } from '../res';
 
 class Header extends Component {
     render() {
@@ -14,9 +14,10 @@ class Header extends Component {
                         <Text style={styles.headerTitle}>{this.props.title}</Text>
                         <Image source={images.icons.menu} style={styles.logoIcon} />
                     </View>
-                    <View style={styles.subHeaderWrap}>
-                        <Text style={styles.headerSubTitle}>{this.props.subTitle}</Text>
-                    </View>
+                    {this.props.subTitle ?
+                        <View style={styles.subHeaderWrap}>
+                            <Text style={styles.headerSubTitle}>{this.props.subTitle}</Text>
+                        </View> : null}
                 </View>
             </View>
         );
@@ -27,7 +28,7 @@ export default Header;
 
 
 const styles = StyleSheet.create({
-    header:{
+    header: {
         backgroundColor: colors.primaryBackgroundColor,
     },
     headerWrap: {
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontSize: 22,
         color: colors.primaryTextColor,
-        fontWeight: '600'
+        fontFamily:fonts.SemiBold
     },
     headerSubTitle: {
         fontSize: 12,
