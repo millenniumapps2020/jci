@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity,SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, SafeAreaView } from 'react-native';
 import { colors, images, fonts } from '../res';
 
 class Header extends Component {
@@ -7,12 +7,10 @@ class Header extends Component {
         return (
             <View style={styles.header}>
                 <View style={styles.headerWrap}>
-
-
                     <SafeAreaView>
                         <View style={styles.mainHeaderWrap}>
                             <TouchableOpacity onPress={() => this.props.leftPressed()}>
-                                <Image source={images.icons.menu} style={styles.menuIcon} />
+                                <Image source={this.props.title == "Projects Details" ? images.icons.Back_icon : images.icons.menu} style={styles.menuIcon} />
                             </TouchableOpacity>
                             <Text style={styles.headerTitle}>{this.props.title}</Text>
                             <Image source={images.icons.menu} style={styles.logoIcon} />

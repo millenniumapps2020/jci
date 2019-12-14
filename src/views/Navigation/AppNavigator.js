@@ -1,15 +1,17 @@
 import React from 'react';
-import { createBottomTabNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import WelcomePage from '../Example/WelcomePage';
 import SplashPage from '../Splash/SplashPage';
 import DrawerNavigator from '../../views/Drawer/drawerNavigation'
-import ProjectDetails from '../Common/ProjectDetailsPage'
+import ProjectDetailsPage from '../Common/ProjectDetailsPage'
+import { createStackNavigator } from 'react-navigation-stack';
 
-export default createAppContainer(createSwitchNavigator({
+export default createAppContainer(createStackNavigator({
     Drawer: DrawerNavigator,
     SplashPage: SplashPage,
-    ProjectDetails: ProjectDetails
+    ProjectDetailsPage: ProjectDetailsPage
 }, {
-    initialRouteName: 'SplashPage'
+    initialRouteName: 'SplashPage',
+    headerMode: 'none',
 }
 ));

@@ -5,7 +5,6 @@ var { width, height } = Dimensions.get('window');
 import sideMenu from '../../components/SideMenu'
 import PermanentProjectPage from '../PermanentProjects/PermanentProjectsPage'
 import ProjectPage from '../Projects/Projects'
-import WelcomePage from '../Example/WelcomePage'
 import MemberPage from '../Members/MembersPage'
 import DashboardPage from '../Dashboard/DashboardPage'
 import AboutPage from '../About/AboutPage'
@@ -13,7 +12,6 @@ import ContactPage from '../Contact/ContactPage'
 
 export default createDrawerNavigator({
     DashboardPage: DashboardPage,
-    WelcomePage: WelcomePage,
     PermanentProjectPage: PermanentProjectPage,
     ProjectPage: ProjectPage,
     MemberPage: MemberPage,
@@ -21,6 +19,8 @@ export default createDrawerNavigator({
     ContactPage: ContactPage
 }, {
     contentComponent: sideMenu,
+    headerMode:'none',
+    initialRouteName : 'DashboardPage',
     drawerWidth: (width * 0.8),
     defaultNavigationOptions: {
         gesturesEnabled: false,

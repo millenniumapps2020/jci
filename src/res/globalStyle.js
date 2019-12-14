@@ -49,7 +49,7 @@ export const globalStyle = StyleSheet.create({
         flexDirection: 'row',
     },
     eventDetailWrap: {
-        marginTop: 10,
+        marginTop: 15,
         flexDirection: 'row'
     },
     labelIcon: {
@@ -68,7 +68,7 @@ export const globalStyle = StyleSheet.create({
     },
     labelHint:{
         marginLeft:10,
-        fontSize:9,
+        fontSize:10,
         // color:colors.accentColor
     }
 });

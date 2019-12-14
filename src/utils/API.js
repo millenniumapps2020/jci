@@ -16,10 +16,8 @@ export const POST = (sub_url_key, bodyData) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(bodyData.body)
+        body: JSON.stringify(bodyData)
     }
-    console.log('POST_METHOD', base_url, JSON.stringify(bodyData))
-    // https://reqres.in/api/users?page=2
     return fetch(base_url, data).then((response) => {
         return response.json();
     })

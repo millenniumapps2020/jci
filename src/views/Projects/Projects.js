@@ -38,7 +38,7 @@ export default class Projects extends Component {
     }
 
     goToProjectDetails = (data) => {
-        this.props.navigation.navigate('ProjectDetails')
+        this.props.navigation.navigate('ProjectDetailsPage')
     }
 
     render() {

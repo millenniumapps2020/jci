@@ -16,6 +16,8 @@ export const images = {
     icons: {
         welcome_icon: require('./images/icons/welcome_icon.png'),
         menu: require('./images/icons/Menu_Icon.png'),
+        Back_icon: require('./images/icons/Back_icon.png'),
+
         date_icon: require('./images/icons/Date_icon.png'),
         time_icon: require('./images/icons/Time_icon.png'),
         location: require('./images/icons/Location.png'),
@@ -34,6 +36,6 @@ export const images = {
         detailsNavigateIcon: require('./images/icons/View_icon.png'),
         locationIcon: require('./images/icons/Location.png'),
 
-      
+
     }
 }
