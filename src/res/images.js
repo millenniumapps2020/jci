@@ -12,8 +12,6 @@ export const images = {
         menu: require('./images/icons/Menu_Icon.png'),
         date_icon: require('./images/icons/Date_icon.png'),
         time_icon: require('./images/icons/Time_icon.png'),
-        date_icon: require('./images/icons/Date_icon.png'),
-        time_icon: require('./images/icons/Time_Icon.png'),
         location: require('./images/icons/Location.png'),
         dashboard_Arrow_icon: require('./images/icons/Dashboard_Arrow_icon.png'),
         dashboard_List_icon: require('./images/icons/Dashboard_List_icon.jpg'),
