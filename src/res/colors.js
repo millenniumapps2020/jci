@@ -4,8 +4,9 @@ export const colors = {
     secondaryColor: '#9b6dac',
     accentColor: '#eeeeee',
     borderColor: "#ebebeb",
-    primaryBackground: "#ebebeb",
-    secondaryBackground: "#ebebeb",
+    primaryBackgroundColor: "#ebebeb",
+    secondaryBackgroundColor: "#ebebeb",
+    primaryTextColor:'#fff',
     textColor: "#949494",
     headingColor: "#000000"
 };

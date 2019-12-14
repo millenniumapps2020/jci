@@ -14,10 +14,10 @@ const instructions = Platform.select({
 class WelcomePage extends Component {
 
     onLoader = () => {
-        this.props.Loader(true);
-        setTimeout(function () {
-            this.props.Loader(false);
-        }.bind(this), 2000);
+        // this.props.Loader(true);
+        // setTimeout(function () {
+        //     this.props.Loader(false);
+        // }.bind(this), 2000);
     }
     render() {
         return (

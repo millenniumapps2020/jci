@@ -1,12 +1,21 @@
 
-import React from 'react'
 import { StyleSheet } from 'react-native'
+import { colors } from './colors';
 
 export const globalStyle = StyleSheet.create({
     /* example link */
     // textStyle:{
     // fontSize: 16
     // }
+    fullView: {
+        flex: 1
+    },
+    bodyWrap: {
+        flex: 1,
+        paddingLeft: 10,
+        paddingRight: 10,
+        backgroundColor: colors.primaryBackgroundColor
+    },
     container: {
         flex: 1,
         alignItems: "center",
@@ -39,5 +48,28 @@ export const globalStyle = StyleSheet.create({
     rowCenter: {
         flexDirection: 'row',
     },
+    eventDetailWrap: {
+        marginTop: 10,
+        flexDirection: 'row'
+    },
+    labelIcon: {
+        width: 20,
+        height: 20,
+        resizeMode:"contain"
+    },
+    label:{
+        marginLeft:10,
+        fontSize:14,
+        // color:colors.accentColor
+    },
+    labelControl:{
+        marginLeft:20,
+        flexDirection:'row',
+    },
+    labelHint:{
+        marginLeft:10,
+        fontSize:9,
+        // color:colors.accentColor
+    }
 });
 
