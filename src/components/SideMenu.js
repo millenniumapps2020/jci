@@ -12,12 +12,12 @@ import { images, colors, globalStyle, fonts } from '../res';
 
 
 var menuData = [
-    { name: 'Dashboard', icon: '', action: 'Dashboard' },
+    { name: 'Dashboard', icon: '', action: 'DashboardPage' },
     { name: 'Members', icon: '', action: 'MemberPage' },
     { name: 'Permanent Projects', icon: '', action: 'ProjectPage' },
     { name: 'Projects', icon: '', action: 'ProjectsPage' },
-    { name: 'About us', icon: '', action: 'WelcomePage' },
-    { name: 'Contact us', icon: '', action: 'WelcomePage' },
+    { name: 'About us', icon: '', action: 'AboutPage' },
+    { name: 'Contact us', icon: '', action: 'ContactPage' },
 ]
 
 const MenuRow = ({ item, onPress }) => {
@@ -112,15 +112,15 @@ const styles = StyleSheet.create({
     },
     sideMenuWrapper: {
         borderRadius: 50,
-        alignItems:"center",
-        justifyContent:'space-between',
+        alignItems: "center",
+        justifyContent: 'space-between',
         flexDirection: 'row',
         backgroundColor: '#fff',
         marginTop: 15,
     },
     menuLeftWrap: {
         flexDirection: 'row',
-        alignItems:'center'
+        alignItems: 'center'
     },
     menuIcon: {
         width: 40,
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         color: colors.SidebarFontColor,
         fontSize: 17,
-        fontFamily:fonts.SemiBold
+        fontFamily: fonts.SemiBold
     },
     sideMenuItemIcon: {
         alignSelf: "center",

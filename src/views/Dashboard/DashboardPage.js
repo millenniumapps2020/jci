@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
     eventTitleText: {
         fontSize: 15,
         color: colors.headingColor,
-        fontWeight:'600',
-        fontFamily:fonts.SemiBold
+        fontWeight: '600',
+        fontFamily: fonts.SemiBold
     },
 })
 export default (DashboardPage);

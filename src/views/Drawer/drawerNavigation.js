@@ -7,12 +7,16 @@ import ProjectPage from '../../components/Projects'
 import WelcomePage from '../Example/WelcomePage'
 import MemberPage from '../../components/MembersComponent'
 import DashboardPage from '../Dashboard/DashboardPage'
+import AboutPage from '../About/AboutPage'
+import ContactPage from '../Contact/ContactPage'
 
 export default createDrawerNavigator({
-    Dashboard: DashboardPage,
+    DashboardPage: DashboardPage,
     WelcomePage: WelcomePage,
     ProjectPage: ProjectPage,
     MemberPage: MemberPage,
+    AboutPage: AboutPage,
+    ContactPage: ContactPage
 }, {
     contentComponent: sideMenu,
     drawerWidth: (width * 0.8),

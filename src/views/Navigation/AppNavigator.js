@@ -6,8 +6,8 @@ import DrawerNavigator from '../../views/Drawer/drawerNavigation'
 
 export default createAppContainer(createSwitchNavigator({
     Drawer: DrawerNavigator,
-    Splash: SplashPage,
+    SplashPage: SplashPage,
 }, {
-    initialRouteName: 'Splash'
+    initialRouteName: 'SplashPage'
 }
 ));
