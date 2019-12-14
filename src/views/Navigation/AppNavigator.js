@@ -10,6 +10,6 @@ export default createAppContainer(createSwitchNavigator({
     Splash: SplashPage,
     ProjectDetails: ProjectDetails
 }, {
-    initialRouteName: 'ProjectDetails'
+    initialRouteName: 'SplashPage'
 }
 ));
