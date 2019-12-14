@@ -7,7 +7,7 @@ import ProjectDetails from '../Common/ProjectDetailsPage'
 
 export default createAppContainer(createSwitchNavigator({
     Drawer: DrawerNavigator,
-    Splash: SplashPage,
+    SplashPage: SplashPage,
     ProjectDetails: ProjectDetails
 }, {
     initialRouteName: 'SplashPage'
