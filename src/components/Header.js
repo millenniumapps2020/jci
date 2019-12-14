@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity,SafeAreaView } from 'react-native';
 import { colors, images, fonts } from '../res';
 
 class Header extends Component {
@@ -7,18 +7,24 @@ class Header extends Component {
         return (
             <View style={styles.header}>
                 <View style={styles.headerWrap}>
-                    <View style={styles.mainHeaderWrap}>
-                        <TouchableOpacity onPress={() => this.props.leftPressed()}>
-                            <Image source={images.icons.menu} style={styles.menuIcon} />
-                        </TouchableOpacity>
-                        <Text style={styles.headerTitle}>{this.props.title}</Text>
-                        <Image source={images.icons.menu} style={styles.logoIcon} />
-                    </View>
-                    {this.props.subTitle ?
-                        <View style={styles.subHeaderWrap}>
-                            <Text style={styles.headerSubTitle}>{this.props.subTitle}</Text>
-                        </View> : null}
+
+
+                    <SafeAreaView>
+                        <View style={styles.mainHeaderWrap}>
+                            <TouchableOpacity onPress={() => this.props.leftPressed()}>
+                                <Image source={images.icons.menu} style={styles.menuIcon} />
+                            </TouchableOpacity>
+                            <Text style={styles.headerTitle}>{this.props.title}</Text>
+                            <Image source={images.icons.menu} style={styles.logoIcon} />
+                        </View>
+                        {this.props.subTitle ?
+                            <View style={styles.subHeaderWrap}>
+                                <Text style={styles.headerSubTitle}>{this.props.subTitle}</Text>
+                            </View> : null}
+                    </SafeAreaView>
+
                 </View>
+
             </View>
         );
     }
@@ -57,7 +63,7 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontSize: 22,
         color: colors.primaryTextColor,
-        fontFamily:fonts.SemiBold
+        fontFamily: fonts.SemiBold
     },
     headerSubTitle: {
         fontSize: 12,
