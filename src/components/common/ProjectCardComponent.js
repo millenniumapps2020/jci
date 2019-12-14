@@ -22,6 +22,11 @@ export default class ProjectCardComponent extends Component {
         super(props)
     }
 
+    goToDetails() {
+        alert(1)
+        // this.props.navigation.navigate('ProjectDetails')
+    }
+
     listRender(data) {
         var item = data.item;
         var index = data.index;
@@ -40,7 +45,9 @@ export default class ProjectCardComponent extends Component {
                     </View>
                 </View>
                 <View style={[styles.navigationView, globalStyle.centerWrap]}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => this.goToDetails()}
+                    >
                         <Image source={images.icons.detailsNavigateIcon}
                             style={styles.navigateImage}
                         />

@@ -3,10 +3,12 @@ import { createBottomTabNavigator, createSwitchNavigator, createAppContainer } f
 import WelcomePage from '../Example/WelcomePage';
 import SplashPage from '../Splash/SplashPage';
 import DrawerNavigator from '../../views/Drawer/drawerNavigation'
+import ProjectDetails from '../Common/ProjectDetailsPage'
 
 export default createAppContainer(createSwitchNavigator({
     Drawer: DrawerNavigator,
-    SplashPage: SplashPage,
+    Splash: SplashPage,
+    ProjectDetails: ProjectDetails
 }, {
     initialRouteName: 'SplashPage'
 }

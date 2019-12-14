@@ -8,6 +8,10 @@ export const images = {
         logo: require('./images/common/logo.png'),
         gallery_image_1: require('./images/common/gallery_image_1.jpg'),
         gallery_image_2: require('./images/common/gallery_image_2.jpg'),
+        libraryImg_1: require('./images/common/library_1.jpg'),
+        libraryImg_2: require('./images/common/library_2.jpg'),
+        libraryImg_3: require('./images/common/library_3.jpeg'),
+        libraryImg_4: require('./images/common/library_4.jpeg')
     },
     icons: {
         welcome_icon: require('./images/icons/welcome_icon.png'),
@@ -28,7 +32,8 @@ export const images = {
         Contact_us_mail_icon: require('./images/icons/Contact_us_mail_icon.png'),
 
         detailsNavigateIcon: require('./images/icons/View_icon.png'),
-        locationIcon: require('./images/icons/Location.png')
+        locationIcon: require('./images/icons/Location.png'),
 
+      
     }
 }
