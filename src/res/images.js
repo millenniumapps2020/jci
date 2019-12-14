@@ -12,7 +12,6 @@ export const images = {
         menu: require('./images/icons/Menu_Icon.png'),
         date_icon: require('./images/icons/Date_icon.png'),
         time_icon: require('./images/icons/Time_icon.png'),
-        menu: require('./images/icons/Menu_ICon.png'),
         date_icon: require('./images/icons/Date_icon.png'),
         time_icon: require('./images/icons/Time_Icon.png'),
         location: require('./images/icons/Location.png'),
