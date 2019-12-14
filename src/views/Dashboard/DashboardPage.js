@@ -19,39 +19,49 @@ class DashboardPage extends Component {
         POST('getEvents', body).then((responseData) => {
             console.log(responseData);
             if (responseData.statusCode == 200) {
-                this.setState({ eventList: responseData["result"] })
+                this.setState({ eventList: list })
             } else {
                 this.errorMessage(responseData.message)
             }
         }).catch((e) => {
+            alert(1)
             console.log(e)
         })
-
     }
     errorMessage(error) {
         alert(error)
     }
+    combineAddress = () => {
+        var removeSpace = address.filter(item => item);
+        return removeSpace.join() + ' - ' + zip_code
+    }
     renderEventItem(data) {
         var item = data.item;
-        console.log(item);
+        var time = item.date_time.split(' ');
+
+        var address = [item.address, item.address2, item.city, item.state, item.country];
+        var removeSpace = address.filter(item => item);
+
+        var combineAddress = removeSpace.join() + ' - ' + item.zip_code
+
         return (
             <CardView key={item.key}>
                 <Text style={styles.eventTitleText}>
-                    Blood donation
-                        </Text>
+                    {item.event_name}
+                </Text>
                 <View style={globalStyle.eventDetailWrap}>
                     <Image source={images.icons.date_icon} style={globalStyle.labelIcon} />
-                    <Text style={globalStyle.label} >01 Jan 2019</Text>
+                    <Text style={globalStyle.label} >{time[0]}</Text>
                     <View style={globalStyle.labelControl} >
                         <Image source={images.icons.time_icon} style={globalStyle.labelIcon} />
-                        <Text style={globalStyle.label} >08:00 AM</Text>
+                        <Text style={globalStyle.label}>{time[1]}</Text>
                     </View>
                 </View>
                 <View style={globalStyle.eventDetailWrap}>
                     <Image source={images.icons.location} style={globalStyle.labelIcon} />
                     <View>
-                        <Text style={globalStyle.label} >Rotary Hall</Text>
-                        <Text style={globalStyle.labelHint} >Paari Nagar, Kumalan Kuttai, Erode, Tamil Nadu 638011</Text>
+                        <Text style={globalStyle.label} >{item.location}</Text>
+                        <Text style={globalStyle.labelHint} >{combineAddress}</Text>
                     </View>
                 </View>
             </CardView>

@@ -19,13 +19,13 @@ export const POST = (sub_url_key, bodyData) => {
         body: JSON.stringify(bodyData.body)
     }
     console.log('POST_METHOD', base_url, JSON.stringify(bodyData))
-
+    // https://reqres.in/api/users?page=2
     return fetch(base_url, data).then((response) => {
         return response.json();
     })
 }
 export const GET = (sub_url_key, bodyData) => {
-    var sub_url=services.sub_url_key;
+    var sub_url = services.sub_url_key;
     var base_url = URL + sub_url;
     // console.log('DELETE_METHOD', base_url, JSON.stringify(bodyData))
 
