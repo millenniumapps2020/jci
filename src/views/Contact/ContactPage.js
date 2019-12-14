@@ -12,7 +12,7 @@ class ContactPage extends Component {
         return (
             <ScrollView style={globalStyle.fullView}>
                 <Header title={"Contact us"} leftPressed={() => this.props.navigation.openDrawer()} />
-                <View style={globalStyle.bodyWrap}>
+                <View style={[globalStyle.bodyWrap,{paddingBottom:30}]}>
                     <CardView>
                         <View style={styles.contactViewWrap}>
                             <View style={styles.contactView}>
@@ -28,11 +28,11 @@ class ContactPage extends Component {
                                 <Text style={styles.mailText}>
                                     jcierodeexcell@gmail.com
                                 </Text>
-                                <Image source={images.icons.Contact_us_location_icon} style={styles.contactIcon} />
+                                <Image source={images.icons.Contact_us_mail_icon} style={styles.contactIcon} />
 
                             </View>
                             <View style={styles.contactView}>
-                                <Image source={images.icons.Contact_us_location_icon} style={styles.contactIcon} />
+                                <Image source={images.icons.Contact_us_call_icon} style={styles.contactIcon} />
                                 <Text style={styles.numberText}>
                                     Ind 90036-71434
                                 </Text>
@@ -41,7 +41,7 @@ class ContactPage extends Component {
                         <View style={styles.mapView}>
                             <Text style={styles.mapTitle}>Google map</Text>
                         </View>
-                        <View style={{ marginLeft: -10, marginRight: -10 }}>
+                        <View style={{ marginLeft: -10, marginRight: -10,paddingBottom:30 }}>
                             <WebView source={{
                                 html: '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3911.7375785446475!2d77.7102684!3d11.3538683!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96f325f83fe21%3A0x9a05f5c71e68d558!2sJunior%20Chamber%20International!5e0!3m2!1sen!2sin!4v1576318116100!5m2!1sen!2sin" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>'
                             }}

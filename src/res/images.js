@@ -5,7 +5,9 @@ export const images = {
     //     plus_icon: require('./images/icons/plus_icon.png')
     // }
     common: {
-        logo: require('./images/common/logo.png')
+        logo: require('./images/common/logo.png'),
+        gallery_image_1: require('./images/common/gallery_image_1.jpg'),
+        gallery_image_2: require('./images/common/gallery_image_2.jpg'),
     },
     icons: {
         welcome_icon: require('./images/icons/welcome_icon.png'),
@@ -22,8 +24,11 @@ export const images = {
         birthDayTag: require('./images/icons/Birthday_Tag.png'),
 
         Contact_us_location_icon: require('./images/icons/Contact_us_location_icon.png'),
-        
+        Contact_us_call_icon: require('./images/icons/Contact_us_call_icon.png'),
+        Contact_us_mail_icon: require('./images/icons/Contact_us_mail_icon.png'),
+
         detailsNavigateIcon: require('./images/icons/View_icon.png'),
         locationIcon: require('./images/icons/Location.png')
+
     }
 }

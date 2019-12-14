@@ -4,7 +4,7 @@ import { colors, images } from '../res';
 class CardView extends Component {
     render() {
         return (
-            <View style={styles.cardMainWrap}>
+            <View style={[styles.cardMainWrap,this.props.style?this.props.style:null]}>
                 {this.props.children}
             </View>
         );
@@ -24,5 +24,6 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 1, height: 2 },
         shadowOpacity: 0.8,
         shadowRadius: 2,
+        overflow:'hidden'
     }
 })
