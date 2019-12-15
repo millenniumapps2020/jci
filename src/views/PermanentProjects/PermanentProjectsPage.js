@@ -4,6 +4,9 @@ import {
     View, StyleSheet, Text
 } from 'react-native';
 
+import { connect } from 'react-redux';
+import { loaderActions } from '../../redux/actions'
+
 import ProjectCard from '../../components/common/ProjectCardComponent'
 
 import { POST } from '../../utils/API';
@@ -11,7 +14,7 @@ import { POST } from '../../utils/API';
 import { colors, globalStyle } from '../../res'
 import Header from '../../components/Header'
 
-export default class PermanentProjects extends Component {
+class PermanentProjects extends Component {
 
     constructor(props) {
         super(props);
@@ -29,6 +32,7 @@ export default class PermanentProjects extends Component {
     }
 
     getProjectList = () => {
+        this.props.Loader(true);
         this.setState({ projectList: [], loading: true })
         var body = {
             "type": "1"
@@ -37,6 +41,7 @@ export default class PermanentProjects extends Component {
     }
 
     apicallBack = (key, data) => {
+        this.props.Loader(false);
         if (key == "success") {
             this.setState({ loading: false, projectList: data })
         } else {
@@ -80,6 +85,9 @@ export default class PermanentProjects extends Component {
         )
     }
 }
+
+export default connect(null, { ...loaderActions })(PermanentProjects)
+
 
 const styles = StyleSheet.create({
     msgTextView: {

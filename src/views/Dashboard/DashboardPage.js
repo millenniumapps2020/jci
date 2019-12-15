@@ -99,12 +99,5 @@ const styles = StyleSheet.create({
 })
 
 
-
-function mapStateToProps(state) {
-    return {
-
-    };
-}
-
-export default connect(mapStateToProps, { ...loaderActions })(DashboardPage);
+export default connect(null, { ...loaderActions })(DashboardPage);
 

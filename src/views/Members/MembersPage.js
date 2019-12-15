@@ -1,14 +1,12 @@
 import React, { Component, Fragment } from 'react'
 
 import {
-    StyleSheet,
-    View,
-    ImageBackground,
-    Text,
-    TextInput,
-    FlatList,
-    Image
+    StyleSheet, View, ImageBackground, Text,
+    TextInput, FlatList, Image, TouchableOpacity
 } from 'react-native';
+
+import { connect } from 'react-redux';
+import { loaderActions } from '../../redux/actions'
 
 import { POST } from '../../utils/API';
 
@@ -18,7 +16,7 @@ import { PLACE_HOLDERS } from '../../res/strings'
 import { images, globalStyle, fonts } from '../../res';
 import Header from '../../components/Header'
 
-export default class MembersComponent extends Component {
+class MembersComponent extends Component {
 
     constructor(props) {
         super(props);
@@ -39,6 +37,7 @@ export default class MembersComponent extends Component {
     }
 
     getMemberList = () => {
+        this.props.Loader(true);
         this.setState({ membersList: [], loading: true })
         let body = {
             "search": this.state.searchString,
@@ -49,6 +48,8 @@ export default class MembersComponent extends Component {
     }
 
     apicallBack = (key, data) => {
+        this.props.Loader(false);
+
         if (key == "success") {
             this.setState({ loading: false, membersList: data })
         } else {
@@ -62,9 +63,17 @@ export default class MembersComponent extends Component {
     }
 
     onSearchMember = (value) => {
-        this.setState({ searchString: value }, () => {
+        this.setState({ searchString: value })
+    }
+
+    onEndEdit = () => {
+        this.getMemberList()
+    }
+
+    obBlurInput = () => {
+        if (!this.state.searchString.length) {
             this.getMemberList()
-        })
+        }
     }
 
     memberListRender(data) {
@@ -147,8 +156,13 @@ export default class MembersComponent extends Component {
                             style={styles.searchInput}
                             placeholder={PLACE_HOLDERS.MEMBER_SEARCH}
                             onChangeText={(e) => this.onSearchMember(e)}
+                            onSubmitEditing={this.onEndEdit}
+                            returnKeyType="search"
+                            onBlur={this.obBlurInput}
                         />
-                        <SearchIcon style={styles.searchIcon} />
+                        <TouchableOpacity onPress={this.getMemberList}>
+                            <SearchIcon style={styles.searchIcon} />
+                        </TouchableOpacity>
                     </View>
 
                     {
@@ -174,6 +188,10 @@ export default class MembersComponent extends Component {
         )
     }
 }
+
+
+export default connect(null, { ...loaderActions })(MembersComponent)
+
 
 const styles = StyleSheet.create({
     searchInput: {
