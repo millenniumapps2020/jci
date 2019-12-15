@@ -14,10 +14,11 @@ export default class ProjectDetailsPage extends Component {
 
     constructor(props) {
         super(props)
-
+        var title = this.props.navigation.state.params.title;
         this.state = {
             projectId: this.props.navigation.state.params.projectId,
-            title: this.props.navigation.state.params.title
+            title: title,
+            projectType: title == "Permanent Project Details" ? "1" : "0",
         }
     }
 
@@ -30,7 +31,7 @@ export default class ProjectDetailsPage extends Component {
             <View style={globalStyle.fullView}>
                 <Header title={this.state.title} leftPressed={this.goBack} />
                 <View style={globalStyle.bodyWrap}>
-                    <ProjectDetailsComponent navigation={this.props.navigation} projectId={this.state.projectId} />
+                    <ProjectDetailsComponent navigation={this.props.navigation} projectId={this.state.projectId} projectType={this.state.projectType} />
                 </View>
             </View>
         )

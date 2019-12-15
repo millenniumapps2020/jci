@@ -18,7 +18,7 @@ class Header extends Component {
                                 />
                             </TouchableOpacity>
                             <Text style={styles.headerTitle}>{this.props.title}</Text>
-                            <Image source={images.icons.menu} style={styles.logoIcon} />
+                            <Image source={images.common.white_logo} style={styles.logoIcon} />
                         </View>
                         {this.props.subTitle ?
                             <View style={styles.subHeaderWrap}>
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     },
     mainHeaderWrap: {
         flexDirection: 'row',
+        alignItems:'center',
         justifyContent: 'space-between'
     },
     subHeaderWrap: {
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     headerTitle: {
-        fontSize: 24,
+        fontSize: 22,
         color: colors.primaryTextColor,
         fontFamily: fonts.SemiBold
     },
@@ -73,8 +74,8 @@ const styles = StyleSheet.create({
         color: colors.primaryTextColor
     },
     logoIcon: {
-        width: 25,
-        height: 25,
+        width: 175/3,
+        height: 74/3,
         resizeMode: 'contain'
     }
 })

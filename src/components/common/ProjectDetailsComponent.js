@@ -33,7 +33,7 @@ export default class ProjectDetailsComponent extends Component {
     getProjectDetails = () => {
         this.setState({ details: '', loading: true })
         var body = {
-            "type": "1",
+            "type": this.props.projectType,
             "projectId": this.props.projectId
         }
         POST('projectDetails', body, this.apicallBack)
@@ -54,7 +54,6 @@ export default class ProjectDetailsComponent extends Component {
 
     render() {
         const { details, loading } = this.state;
-
         return (
             <ScrollView>
                 {
@@ -80,25 +79,23 @@ export default class ProjectDetailsComponent extends Component {
                             <View style={styles.galleryView}>
                                 <Text style={styles.galleryText}>Gallery</Text>
                                 <View style={styles.subHeadingRow}>
-                                    <Text style={styles.gallerySubText}>Recent photos</Text>
-                                    <TouchableOpacity>
+                                    {/* <Text style={styles.gallerySubText}>Recent photos</Text> */}
+                                    <TouchableOpacity style={{width:'100%',alignItems:"flex-end"}}>
                                         <Text style={styles.seeAllBtn}>See all</Text>
                                     </TouchableOpacity>
                                 </View>
                                 <View style={styles.imgView}>
+                                    {console.log(details.images)}
                                     {
-                                        details.images ?
-                                            details.images.length ?
-                                                details.images.map((item, index) => {
-                                                    return (
-                                                        <Image key={index}
-                                                            source={{ uri: item.image_url }}
-                                                            style={styles.image}
-                                                        />
-                                                    )
-                                                })
-                                                :
-                                                null
+                                        details.images && details.images.length > 0 ?
+                                            details.images.map((item, index) => {
+                                                return (
+                                                    <Image key={index}
+                                                        source={{ uri: item.image_url ? item.image_url : "http://jciexcellgkexams.com/img/slider/3.jpg" }}
+                                                        style={styles.image}
+                                                    />
+                                                )
+                                            })
                                             :
                                             null
                                     }

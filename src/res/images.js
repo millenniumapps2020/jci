@@ -6,6 +6,7 @@ export const images = {
     // }
     common: {
         logo: require('./images/common/logo.png'),
+        white_logo: require('./images/common/white_logo.png'),
         gallery_image_1: require('./images/common/gallery_image_1.jpg'),
         gallery_image_2: require('./images/common/gallery_image_2.jpg'),
         libraryImg_1: require('./images/common/library_1.jpg'),

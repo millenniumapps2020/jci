@@ -33,7 +33,7 @@ export default class Projects extends Component {
     getProjectList = () => {
         this.setState({ projectList: [], loading: true })
         let body = {
-            "type": "1"
+            "type": "0"
         }
         POST('getProjects', body, this.apicallBack)
     }
