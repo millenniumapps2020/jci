@@ -1,18 +1,16 @@
 import React, { Component, Fragment } from 'react'
 
 import {
-    SafeAreaView,
     StyleSheet,
-    ScrollView,
     View,
     ImageBackground,
     Text,
     TextInput,
     FlatList,
-    StatusBar,
-    TouchableOpacity,
     Image
 } from 'react-native';
+
+import { POST } from '../../utils/API';
 
 import { colors } from '../../res'
 import { SearchIcon } from '../../components/common/Icons'
@@ -26,49 +24,40 @@ export default class MembersComponent extends Component {
         super(props);
 
         this.state = {
-            membersList: [
-                {
-                    name: "Nishanth",
-                    designation: "Developer",
-                    bloodGroup: "O positive",
-                    phNo: "7502572509",
-                    address: "Mayiladumparai, Theni-Dt",
-                    email: "nishanth@gmail.com",
-                    birthDay: "30 Jun 1995",
-                    wedding: "12 Mar 2022"
-                },
-                {
-                    name: "Velmurugan",
-                    designation: "Human Resource",
-                    bloodGroup: "B positive",
-                    phNo: "7502572509",
-                    address: "Mayiladumparai, Theni-Dt",
-                    email: "vel@gmail.com",
-                    birthDay: "30 Jun 1995",
-                    wedding: "12 Mar 2022"
-                },
-                {
-                    name: "Ramesh A",
-                    designation: "UI/UX",
-                    bloodGroup: "AB positive",
-                    phNo: "7502572509",
-                    address: "Mayiladumparai, Theni-Dt",
-                    email: "baburam@gmail.com",
-                    birthDay: "30 Jun 1995",
-                    wedding: "12 Mar 2022"
-                },
-                {
-                    name: "Karthick",
-                    designation: "Civil",
-                    bloodGroup: "A positive",
-                    phNo: "7502572509",
-                    address: "Mayiladumparai, Theni-Dt",
-                    email: "karthick@gmail.com",
-                    birthDay: "30 Jun 1995",
-                    wedding: "12 Mar 2022"
-                }
-            ]
+            membersList: [],
+            searchString: ""
         }
+    }
+
+    componentDidMount() {
+        this.getMemberList()
+    }
+
+    getMemberList = () => {
+        let body = {
+            "search": this.state.searchString,
+            "limit": "10",
+            "offset": "0"
+        }
+        POST('members', body, this.apicallBack)
+    }
+
+    apicallBack = (key, data) => {
+        if (key == "success") {
+            this.setState({ membersList: data })
+        } else {
+            errorMessage(data)
+        }
+    }
+
+    errorMessage(error) {
+        alert(error)
+    }
+
+    onSearchMember = (value) => {
+        this.setState({ searchString: value }, () => {
+            this.getMemberList()
+        })
     }
 
     memberListRender(data) {
@@ -78,7 +67,7 @@ export default class MembersComponent extends Component {
             <View key={'memberList' + index} style={styles.memberView}>
                 <View style={styles.detailsView}>
                     <View style={[styles.imageView, globalStyle.centerWrap]}>
-                        <Image source={images.common.libraryImg_4}
+                        <Image source={{ uri: item.profile_image }}
                             style={styles.memberImage}
                         />
                     </View>
@@ -96,11 +85,11 @@ export default class MembersComponent extends Component {
                         <View style={[styles.detailsRow2, styles.detailsRow]}>
                             <View style={styles.detailsLeft}>
                                 <Text style={styles.label}>Blood Group</Text>
-                                <Text style={styles.detailsVal}>{item.bloodGroup}</Text>
+                                <Text style={styles.detailsVal}>{item.blood_group}</Text>
                             </View>
                             <View style={styles.detailsRight}>
                                 <Text style={styles.label}>Phone number</Text>
-                                <Text style={styles.detailsVal}>{item.phNo}</Text>
+                                <Text style={styles.detailsVal}>{item.phone_number}</Text>
                             </View>
                         </View>
                         <View style={[styles.detailsRow2, styles.detailsRow]}>
@@ -110,7 +99,7 @@ export default class MembersComponent extends Component {
                             </View>
                             <View style={styles.detailsRight}>
                                 <Text style={styles.label}>E-mail address</Text>
-                                <Text style={styles.detailsVal}>{item.email}</Text>
+                                <Text style={styles.detailsVal}>{item.email_address}</Text>
                             </View>
                         </View>
                     </View>
@@ -124,12 +113,12 @@ export default class MembersComponent extends Component {
                             <View style={styles.bDayView}>
                                 <Image source={images.icons.cakeIcon} style={styles.bdayImg} />
                                 <Text style={styles.bottomLabel}>Birthday</Text>
-                                <Text style={styles.bottomVal}>{item.birthDay}</Text>
+                                <Text style={styles.bottomVal}>{item.dob}</Text>
                             </View>
                             <View style={styles.weddingView}>
                                 <Image source={images.icons.coupleIcon} style={styles.bdayImg} />
                                 <Text style={styles.bottomLabel}>Wedding anniversary</Text>
-                                <Text style={styles.bottomVal}>{item.wedding}</Text>
+                                <Text style={styles.bottomVal}>{item.wedding_date}</Text>
                             </View>
                         </View>
                     </ImageBackground>
@@ -148,6 +137,7 @@ export default class MembersComponent extends Component {
                     <View style={styles.searchInputView}>
                         <TextInput style={styles.searchInput}
                             placeholder={PLACE_HOLDERS.MEMBER_SEARCH}
+                            onChangeText={(e) => this.onSearchMember(e)}
                         />
                         <SearchIcon style={styles.searchIcon} />
                     </View>
@@ -271,7 +261,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-around",
         paddingLeft: 8,
-        paddingRight: 8,
+        paddingRight: 10,
         paddingTop: 5,
         paddingBottom: 5
     },

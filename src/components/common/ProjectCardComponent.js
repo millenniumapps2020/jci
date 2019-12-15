@@ -29,7 +29,7 @@ export default class ProjectCardComponent extends Component {
             <TouchableOpacity onPress={() => this.props.cardPressed(item)}>
                 <View key={'project' + index} style={styles.projectCard}>
                     <View style={[styles.imgView, globalStyle.centerWrap]}>
-                        <Image source={images.common.libraryImg_3} style={styles.projectImg} />
+                        <Image source={{ uri: item.image_url }} style={styles.projectImg} />
                     </View>
                     <View style={styles.contentView}>
                         <Text style={styles.projectName}>{item.name}</Text>
@@ -37,7 +37,7 @@ export default class ProjectCardComponent extends Component {
                             <Image source={images.icons.locationIcon}
                                 style={styles.locationImg}
                             />
-                            <Text style={styles.location}>{item.location}</Text>
+                            <Text style={styles.location}>{item.client_name}</Text>
                         </View>
                     </View>
                     <View style={[styles.navigationView, globalStyle.centerWrap]}>

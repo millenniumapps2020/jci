@@ -1,20 +1,12 @@
 import React, { Component } from 'react'
 
 import {
-    SafeAreaView,
-    StyleSheet,
-    ScrollView,
     View,
-    ImageBackground,
-    Text,
-    TextInput,
-    FlatList,
-    StatusBar,
-    TouchableOpacity,
-    Image
 } from 'react-native';
 
 import ProjectCard from '../../components/common/ProjectCardComponent'
+
+import { POST } from '../../utils/API';
 
 import { colors, globalStyle } from '../../res'
 import Header from '../../components/Header'
@@ -25,31 +17,40 @@ export default class PermanentProjects extends Component {
         super(props);
 
         this.state = {
-            projectList: [
-                {
-                    name: "River maintenance",
-                    location: "Erode Highroad"
-                },
-                {
-                    name: "Government school library maintenance",
-                    location: "Erode Government School"
-                },
-                {
-                    name: "River maintenance",
-                    location: "Erode Highroad"
-                },
-                {
-                    name: "Government school library maintenance",
-                    location: "Erode Government School"
-                }
-            ]
+            projectList: []
         }
     }
 
-    goToProjectDetails = (data) => {
-        this.props.navigation.navigate('ProjectDetailsPage')
+    componentDidMount() {
+        this.getProjectList()
     }
-    
+
+    getProjectList = () => {
+        var body = {
+            "type": "1"
+        }
+        POST('getProjects', body, this.apicallBack)
+    }
+
+    apicallBack = (key, data) => {
+        if (key == "success") {
+            this.setState({ projectList: data })
+        } else {
+            this.errorMessage(data)
+        }
+    }
+
+    errorMessage = (error) => {
+        alert(error)
+    }
+
+    goToProjectDetails = (data) => {
+        this.props.navigation.navigate(
+            'ProjectDetailsPage',
+            { projectId: data.project_id, title: "Permanent Project Details" }
+        )
+    }
+
     render() {
         const { projectList } = this.state;
         return (
