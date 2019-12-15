@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { images, colors, globalStyle, fonts } from '../../res/';
+import { connect } from 'react-redux';
+import { loaderActions } from '../../redux/actions'
+
 import { POST } from '../../utils/API';
 import Constants from '../../utils/Constants';
 
@@ -17,6 +20,7 @@ class DashboardPage extends Component {
     }
     intialApiCall() {
         var body = {}
+        this.props.Loader(true);
         POST('getEvents', body, this.apicallBack)
     }
     apicallBack = (key, data) => {
@@ -25,6 +29,7 @@ class DashboardPage extends Component {
         } else {
             errorMessage(data)
         }
+        this.props.Loader(false);
 
     }
     errorMessage(error) {
@@ -93,4 +98,14 @@ const styles = StyleSheet.create({
         fontFamily: fonts.SemiBold
     },
 })
-export default (DashboardPage);
+
+
+
+function mapStateToProps(state) {
+    return {
+
+    };
+}
+
+export default connect(mapStateToProps, { ...loaderActions })(DashboardPage);
+
