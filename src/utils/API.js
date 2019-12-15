@@ -7,7 +7,7 @@ const DEVELOPMENT_BASE_URL = 'https://www.gracemarketing.in/jcierode.com/';
 
 const URL = APP_TYPE == 1 ? PRODUCTION_BASE_URL : DEVELOPMENT_BASE_URL;
 
-export const POST = (sub_url_key, bodyData) => {
+export const POST = (sub_url_key, bodyData, callback) => {
     var sub_url = services[sub_url_key];
     var base_url = URL + sub_url
     var data = {
@@ -20,6 +20,14 @@ export const POST = (sub_url_key, bodyData) => {
     }
     return fetch(base_url, data).then((response) => {
         return response.json();
+    }).then((responseData) => {
+        if (responseData.statusCode == 200) {
+            callback('success', responseData.result);
+        } else {
+            callback('error', responseData.message);
+        }
+    }).catch((e) => {
+        console.log(e)
     })
 }
 export const GET = (sub_url_key, bodyData) => {

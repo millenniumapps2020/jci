@@ -17,17 +17,14 @@ class DashboardPage extends Component {
     }
     intialApiCall() {
         var body = {}
-        POST('getEvents', body).then((responseData) => {
-            console.log(responseData);
-            if (responseData.statusCode == 200) {
-                this.setState({ eventList: responseData.result })
-            } else {
-                this.errorMessage(responseData.message)
-            }
-        }).catch((e) => {
-            console.log(e)
-        })
-        this.props.navigation.goBack()
+        POST('getEvents', body, this.apicallBack)
+    }
+    apicallBack = (key, data) => {
+        if (key == "success") {
+            this.setState({ eventList: data })
+        } else {
+            errorMessage(data)
+        }
 
     }
     errorMessage(error) {
