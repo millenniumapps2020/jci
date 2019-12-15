@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
 
 import {
     StyleSheet,
@@ -14,17 +13,20 @@ import { POST } from '../../utils/API';
 
 import { images, globalStyle, fonts, colors } from '../../res';
 
-class ProjectDetailsComponent extends Component {
+export default class ProjectDetailsComponent extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            details: {}
+            details: {},
+            projectId: null
         }
     }
 
     componentDidMount() {
+        this.setState({ projectId: this.props.projectId })
+        console.log('projectId', this.props)
         this.getProjectDetails()
     }
 
@@ -103,16 +105,6 @@ class ProjectDetailsComponent extends Component {
         )
     }
 }
-
-function mapStateToProps(state) {
-    const { isLoading, projectId } = state.Common.loaderReducer;
-    return {
-        isLoading, projectId
-    };
-}
-
-export default connect(mapStateToProps)(ProjectDetailsComponent)
-
 
 
 const styles = StyleSheet.create({
