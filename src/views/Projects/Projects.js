@@ -6,6 +6,9 @@ import {
     Text
 } from 'react-native';
 
+import { connect } from 'react-redux';
+import { loaderActions } from '../../redux/actions'
+
 import ProjectCard from '../../components/common/ProjectCardComponent'
 
 import { POST } from '../../utils/API';
@@ -13,7 +16,7 @@ import { POST } from '../../utils/API';
 import { colors, globalStyle } from '../../res'
 import Header from '../../components/Header'
 
-export default class Projects extends Component {
+class Projects extends Component {
 
     constructor(props) {
         super(props);
@@ -31,6 +34,7 @@ export default class Projects extends Component {
     }
 
     getProjectList = () => {
+        this.props.Loader(true);
         this.setState({ projectList: [], loading: true })
         let body = {
             "type": "1"
@@ -39,6 +43,7 @@ export default class Projects extends Component {
     }
 
     apicallBack = (key, data) => {
+        this.props.Loader(false);
         if (key == "success") {
             this.setState({ loading: false, projectList: data })
         } else {
@@ -83,6 +88,8 @@ export default class Projects extends Component {
         )
     }
 }
+
+export default connect(null, { ...loaderActions })(Projects)
 
 const styles = StyleSheet.create({
     msgTextView: {

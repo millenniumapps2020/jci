@@ -9,11 +9,14 @@ import {
     ScrollView
 } from 'react-native';
 
+import { connect } from 'react-redux';
+import { loaderActions } from '../../redux/actions'
+
 import { POST } from '../../utils/API';
 
 import { images, globalStyle, fonts, colors } from '../../res';
 
-export default class ProjectDetailsComponent extends Component {
+class ProjectDetailsComponent extends Component {
 
     constructor(props) {
         super(props);
@@ -31,6 +34,7 @@ export default class ProjectDetailsComponent extends Component {
     }
 
     getProjectDetails = () => {
+        this.props.Loader(true);
         this.setState({ details: '', loading: true })
         var body = {
             "type": "1",
@@ -40,6 +44,7 @@ export default class ProjectDetailsComponent extends Component {
     }
 
     apicallBack = (key, data) => {
+        this.props.Loader(false);
         if (key == "success") {
             this.setState({ loading: false, details: data[0] ? data[0] : {} })
         } else {
@@ -92,7 +97,7 @@ export default class ProjectDetailsComponent extends Component {
                                                 details.images.map((item, index) => {
                                                     return (
                                                         <Image key={index}
-                                                            source={{ uri: item.image_url }}
+                                                            source={{ uri: item.image_url ? item.image_url : "https://scholarlykitchen.sspnet.org/wp-content/uploads/2016/11/istock_78312587_medium.jpg" }}
                                                             style={styles.image}
                                                         />
                                                     )
@@ -121,6 +126,7 @@ export default class ProjectDetailsComponent extends Component {
     }
 }
 
+export default connect(null, { ...loaderActions })(ProjectDetailsComponent)
 
 const styles = StyleSheet.create({
     baseView: {
