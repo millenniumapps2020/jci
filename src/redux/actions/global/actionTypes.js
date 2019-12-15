@@ -1,1 +1,2 @@
 export const LOADER_UPDATE = 'LOADER_UPDATE';
+export const SAVE_PROJECTID = 'SAVE_PROJECTID';

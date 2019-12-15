@@ -7,6 +7,8 @@ import {
 
 import ProjectCard from '../../components/common/ProjectCardComponent'
 
+import { POST } from '../../utils/API';
+
 import { colors, globalStyle } from '../../res'
 import Header from '../../components/Header'
 
@@ -16,25 +18,31 @@ export default class Projects extends Component {
         super(props);
 
         this.state = {
-            projectList: [
-                {
-                    name: "Government school library maintenance",
-                    location: "Erode Government School"
-                },
-                {
-                    name: "River maintenance",
-                    location: "Erode Highroad"
-                },
-                {
-                    name: "Government school library maintenance",
-                    location: "Erode Government School"
-                },
-                {
-                    name: "River maintenance",
-                    location: "Erode Highroad"
-                },
-            ]
+            projectList: []
         }
+    }
+
+    componentDidMount() {
+        this.getProjectList()
+    }
+
+    getProjectList = () => {
+        let body = {
+            "type": "1"
+        }
+        POST('getProjects', body, this.apicallBack)
+    }
+
+    apicallBack = (key, data) => {
+        if (key == "success") {
+            this.setState({ projectList: data })
+        } else {
+            this.errorMessage(data)
+        }
+    }
+
+    errorMessage = (error) => {
+        alert(error)
     }
 
     goToProjectDetails = (data) => {
