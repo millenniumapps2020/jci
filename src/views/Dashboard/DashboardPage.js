@@ -24,13 +24,12 @@ class DashboardPage extends Component {
         POST('getEvents', body, this.apicallBack)
     }
     apicallBack = (key, data) => {
+        this.props.Loader(false);
         if (key == "success") {
             this.setState({ eventList: data })
         } else {
             errorMessage(data)
         }
-        this.props.Loader(false);
-
     }
     errorMessage(error) {
         alert(error)
