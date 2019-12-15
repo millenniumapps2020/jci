@@ -10,7 +10,12 @@ class Header extends Component {
                     <SafeAreaView>
                         <View style={styles.mainHeaderWrap}>
                             <TouchableOpacity onPress={() => this.props.leftPressed()}>
-                                <Image source={this.props.title == "Projects Details" ? images.icons.Back_icon : images.icons.menu} style={styles.menuIcon} />
+                                <Image
+                                    source={
+                                        (this.props.title === "Project Details" || this.props.title == "Permanent Project Details") ? images.icons.Back_icon
+                                            : images.icons.menu}
+                                    style={styles.menuIcon}
+                                />
                             </TouchableOpacity>
                             <Text style={styles.headerTitle}>{this.props.title}</Text>
                             <Image source={images.icons.menu} style={styles.logoIcon} />

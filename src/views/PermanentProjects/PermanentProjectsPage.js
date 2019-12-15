@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import {
-    View,
+    View, StyleSheet, Text
 } from 'react-native';
 
 import ProjectCard from '../../components/common/ProjectCardComponent'
@@ -17,15 +17,19 @@ export default class PermanentProjects extends Component {
         super(props);
 
         this.state = {
-            projectList: []
+            projectList: [],
+            loading: false
         }
     }
 
     componentDidMount() {
-        this.getProjectList()
+        this.props.navigation.addListener('willFocus', () => {
+            this.getProjectList()
+        });
     }
 
     getProjectList = () => {
+        this.setState({ projectList: [], loading: true })
         var body = {
             "type": "1"
         }
@@ -34,8 +38,9 @@ export default class PermanentProjects extends Component {
 
     apicallBack = (key, data) => {
         if (key == "success") {
-            this.setState({ projectList: data })
+            this.setState({ loading: false, projectList: data })
         } else {
+            this.setState({ loading: false })
             this.errorMessage(data)
         }
     }
@@ -52,14 +57,35 @@ export default class PermanentProjects extends Component {
     }
 
     render() {
-        const { projectList } = this.state;
+        const { projectList, loading } = this.state;
         return (
             <View style={globalStyle.fullView}>
                 <Header title={"Permanent Projects"} leftPressed={() => this.props.navigation.openDrawer()} />
-                <View style={globalStyle.bodyWrap}>
-                    <ProjectCard projectList={projectList} cardPressed={this.goToProjectDetails} />
-                </View>
+                {
+                    projectList.length ?
+                        <View style={globalStyle.bodyWrap}>
+                            <ProjectCard projectList={projectList} cardPressed={this.goToProjectDetails} />
+                        </View>
+                        :
+                        loading ?
+                            <View style={styles.msgTextView}>
+                                <Text>Loading ...</Text>
+                            </View>
+                            :
+                            <View style={styles.msgTextView}>
+                                <Text>No data found</Text>
+                            </View>
+                }
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    msgTextView: {
+        height: "100%",
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center"
+    }
+})

@@ -30,7 +30,7 @@ export default class ProjectDetailsPage extends Component {
             <View style={globalStyle.fullView}>
                 <Header title={this.state.title} leftPressed={this.goBack} />
                 <View style={globalStyle.bodyWrap}>
-                    <ProjectDetailsComponent projectId={this.state.projectId} />
+                    <ProjectDetailsComponent navigation={this.props.navigation} projectId={this.state.projectId} />
                 </View>
             </View>
         )

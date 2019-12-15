@@ -25,15 +25,21 @@ export default class MembersComponent extends Component {
 
         this.state = {
             membersList: [],
-            searchString: ""
+            searchString: "",
+            loading: false
         }
     }
 
     componentDidMount() {
-        this.getMemberList()
+        this.props.navigation.addListener('willFocus', () => {
+            this.setState({ searchString: "" }, () => {
+                this.getMemberList()
+            })
+        });
     }
 
     getMemberList = () => {
+        this.setState({ membersList: [], loading: true })
         let body = {
             "search": this.state.searchString,
             "limit": "10",
@@ -44,8 +50,9 @@ export default class MembersComponent extends Component {
 
     apicallBack = (key, data) => {
         if (key == "success") {
-            this.setState({ membersList: data })
+            this.setState({ loading: false, membersList: data })
         } else {
+            this.setState({ loading: false })
             errorMessage(data)
         }
     }
@@ -128,25 +135,40 @@ export default class MembersComponent extends Component {
     }
 
     render() {
-        const { membersList } = this.state;
+        const { membersList, loading } = this.state;
 
         return (
             <View style={globalStyle.fullView}>
                 <Header title={"Members"} leftPressed={() => this.props.navigation.openDrawer()} />
                 <View style={globalStyle.bodyWrap}>
                     <View style={styles.searchInputView}>
-                        <TextInput style={styles.searchInput}
+                        <TextInput
+                            value={this.state.searchString}
+                            style={styles.searchInput}
                             placeholder={PLACE_HOLDERS.MEMBER_SEARCH}
                             onChangeText={(e) => this.onSearchMember(e)}
                         />
                         <SearchIcon style={styles.searchIcon} />
                     </View>
 
-                    <FlatList
-                        data={membersList}
-                        renderItem={this.memberListRender}
-                        keyExtractor={(item, index) => ("memberList" + index)}
-                    />
+                    {
+                        membersList.length ?
+                            <FlatList
+                                data={membersList}
+                                renderItem={this.memberListRender}
+                                keyExtractor={(item, index) => ("memberList" + index)}
+                            />
+                            :
+                            loading ?
+                                <View style={styles.msgTextView}>
+                                    <Text>Loading ...</Text>
+                                </View>
+                                :
+                                <View style={styles.msgTextView}>
+                                    <Text>No data found</Text>
+                                </View>
+                    }
+
                 </View>
             </View>
         )
@@ -271,7 +293,13 @@ const styles = StyleSheet.create({
     },
     memberImage: {
         height: 78,
-        width: "75%",
-        borderRadius: 40
+        width: 78,
+        borderRadius: 36
+    },
+    msgTextView: {
+        height: "100%",
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center"
     }
 })

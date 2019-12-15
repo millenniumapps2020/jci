@@ -20,17 +20,18 @@ export default class ProjectDetailsComponent extends Component {
 
         this.state = {
             details: {},
-            projectId: null
+            loading: false
         }
     }
 
     componentDidMount() {
-        this.setState({ projectId: this.props.projectId })
-        console.log('projectId', this.props)
-        this.getProjectDetails()
+        this.props.navigation.addListener('willFocus', () => {
+            this.getProjectDetails()
+        });
     }
 
     getProjectDetails = () => {
+        this.setState({ details: {}, loading: true })
         var body = {
             "type": "1",
             "projectId": this.props.projectId
@@ -40,8 +41,9 @@ export default class ProjectDetailsComponent extends Component {
 
     apicallBack = (key, data) => {
         if (key == "success") {
-            this.setState({ details: data[0] ? data[0] : {} })
+            this.setState({ loading: false, details: data[0] ? data[0] : {} })
         } else {
+            this.setState({ loading: false })
             this.errorMessage(data)
         }
     }
@@ -51,56 +53,69 @@ export default class ProjectDetailsComponent extends Component {
     }
 
     render() {
-        const { details } = this.state;
+        const { details, loading } = this.state;
 
         return (
             <ScrollView>
-                <View style={[styles.baseView, globalStyle.centerWrap]}>
-                    <View style={[styles.headerView, globalStyle.centerWrap]}>
-                        <Text style={styles.projectName}>{details.name}</Text>
-                        <View style={styles.locationView}>
-                            <Image source={images.icons.locationIcon}
-                                style={styles.locationImg}
-                            />
-                            <Text style={styles.location}>{details.client_name}</Text>
-                        </View>
-                    </View>
-                    <View style={styles.hrLine}></View>
+                {
+                    details !== {} ?
+                        <View style={[styles.baseView, globalStyle.centerWrap]}>
+                            <View style={[styles.headerView, globalStyle.centerWrap]}>
+                                <Text style={styles.projectName}>{details.name}</Text>
+                                <View style={styles.locationView}>
+                                    <Image source={images.icons.locationIcon}
+                                        style={styles.locationImg}
+                                    />
+                                    <Text style={styles.location}>{details.client_name}</Text>
+                                </View>
+                            </View>
+                            <View style={styles.hrLine}></View>
 
-                    <Text style={styles.detailsContent}>
-                        {details.description}
-                    </Text>
+                            <Text style={styles.detailsContent}>
+                                {details.description}
+                            </Text>
 
-                    <View style={styles.hrLine}></View>
+                            <View style={styles.hrLine}></View>
 
-                    <View style={styles.galleryView}>
-                        <Text style={styles.galleryText}>Gallery</Text>
-                        <View style={styles.subHeadingRow}>
-                            <Text style={styles.gallerySubText}>Recent photos</Text>
-                            <TouchableOpacity>
-                                <Text style={styles.seeAllBtn}>See all</Text>
-                            </TouchableOpacity>
+                            <View style={styles.galleryView}>
+                                <Text style={styles.galleryText}>Gallery</Text>
+                                <View style={styles.subHeadingRow}>
+                                    <Text style={styles.gallerySubText}>Recent photos</Text>
+                                    <TouchableOpacity>
+                                        <Text style={styles.seeAllBtn}>See all</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={styles.imgView}>
+                                    {
+                                        details.images ?
+                                            details.images.length ?
+                                                details.images.map((item, index) => {
+                                                    return (
+                                                        <Image key={index}
+                                                            source={{ uri: item.image_url }}
+                                                            style={styles.image}
+                                                        />
+                                                    )
+                                                })
+                                                :
+                                                null
+                                            :
+                                            null
+                                    }
+                                </View>
+                            </View>
                         </View>
-                        <View style={styles.imgView}>
-                            {
-                                details.images ?
-                                    details.images.length ?
-                                        details.images.map((item, index) => {
-                                            return (
-                                                <Image key={index}
-                                                    source={{ uri: item.image_url }}
-                                                    style={styles.image}
-                                                />
-                                            )
-                                        })
-                                        :
-                                        null
-                                    :
-                                    null
-                            }
-                        </View>
-                    </View>
-                </View>
+                        :
+                        loading ?
+                            <View style={styles.msgTextView}>
+                                <Text>Loading ...</Text>
+                            </View>
+                            :
+                            <View style={styles.msgTextView}>
+                                <Text>No data found</Text>
+                            </View>
+                }
+
             </ScrollView>
         )
     }
@@ -182,5 +197,11 @@ const styles = StyleSheet.create({
         height: 70,
         width: "25%",
         margin: 1
+    },
+    msgTextView: {
+        height: "100%",
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center"
     }
 })
