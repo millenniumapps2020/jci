@@ -19,7 +19,7 @@ export default class ProjectDetailsComponent extends Component {
         super(props);
 
         this.state = {
-            details: {},
+            details: '',
             loading: false
         }
     }
@@ -31,7 +31,7 @@ export default class ProjectDetailsComponent extends Component {
     }
 
     getProjectDetails = () => {
-        this.setState({ details: {}, loading: true })
+        this.setState({ details: '', loading: true })
         var body = {
             "type": "1",
             "projectId": this.props.projectId
@@ -58,7 +58,7 @@ export default class ProjectDetailsComponent extends Component {
         return (
             <ScrollView>
                 {
-                    details !== {} ?
+                    details ?
                         <View style={[styles.baseView, globalStyle.centerWrap]}>
                             <View style={[styles.headerView, globalStyle.centerWrap]}>
                                 <Text style={styles.projectName}>{details.name}</Text>
