@@ -9,7 +9,7 @@ class Header extends Component {
                 <View style={styles.headerWrap}>
                     <SafeAreaView>
                         <View style={styles.mainHeaderWrap}>
-                            <TouchableOpacity onPress={() => this.props.leftPressed()}>
+                            <TouchableOpacity onPress={() => this.props.leftPressed()} style={styles.leftWrap}>
                                 <Image
                                     source={
                                         (this.props.title === "Project Details" || this.props.title == "Permanent Project Details") ? images.icons.Back_icon
@@ -49,14 +49,19 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 15,
         borderBottomEndRadius: 15
     },
+    leftWrap: {
+        width: 175 / 3,
+        height: 74 / 3,
+    },
     mainHeaderWrap: {
         flexDirection: 'row',
-        alignItems:'center',
+        alignItems: 'center',
         justifyContent: 'space-between'
     },
     subHeaderWrap: {
         marginTop: 20,
         flexDirection: 'row',
+        alignItems: 'center',
         justifyContent: 'center'
     },
     menuIcon: {
@@ -65,7 +70,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     headerTitle: {
-        fontSize: 22,
+        fontSize: 19,
         color: colors.primaryTextColor,
         fontFamily: fonts.SemiBold
     },
@@ -74,8 +79,8 @@ const styles = StyleSheet.create({
         color: colors.primaryTextColor
     },
     logoIcon: {
-        width: 175/3,
-        height: 74/3,
+        width: 175 / 3,
+        height: 74 / 3,
         resizeMode: 'contain'
     }
 })
