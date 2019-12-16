@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "318413914416",
+    "firebase_url": "https://test-app-1995.firebaseio.com",
+    "project_id": "test-app-1995",
+    "storage_bucket": "test-app-1995.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:318413914416:android:d838fe69085ce0610408f5",
+        "android_client_info": {
+          "package_name": "com.jci"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "318413914416-hq3v4ru1q9baq5dagp86sep55nojhtnh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0sVQ8l6x98LrMaH_4Ye4JQROxmSmg6zI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "318413914416-hq3v4ru1q9baq5dagp86sep55nojhtnh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
