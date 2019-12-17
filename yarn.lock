@@ -842,9 +842,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@react-native-community/async-storage@react-native-community/async-storage":
-  version "1.7.0"
-  resolved "https://codeload.github.com/react-native-community/async-storage/tar.gz/afb208bbf958a09177f272e12e1a7ef89f55c75e"
+"@react-native-community/async-storage@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.7.1.tgz#ef2104d865de61ad91bba66613e57e689ff4e6a1"
+  integrity sha512-/oX/x+EU4xNaqIaC/epVKzO8XghzImPA7l8cLz3USEFmtFiXFjBbTeeIFjjEm/u4/cv38Wi1xMEa10PHIWygRg==
 
 "@react-native-community/cli-debugger-ui@^3.0.0":
   version "3.0.0"
@@ -5321,6 +5322,11 @@ react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6, react-is
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
+
+react-native-device-info@^5.4.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-5.4.0.tgz#c837afdfc7947eef0a09c1bf2f3beb127d31458b"
+  integrity sha512-57IZQ7IavRlNZvI1cKypMkjRPa7nmLK6jYVSrvPMYX2VrCszmgJKlP90cZZaX0FObtNt1yYuKAOkBqyjkNrTIA==
 
 react-native-gesture-handler@^1.5.2:
   version "1.5.2"

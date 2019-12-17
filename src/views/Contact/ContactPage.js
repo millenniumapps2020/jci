@@ -8,11 +8,18 @@ import Header from '../../components/Header'
 import CardView from '../../components/CardView'
 
 class ContactPage extends Component {
+    state = {
+        mail: 'jcierodeexcell@gmail.com',
+        number: '90036-71434'
+
+    }
+    componentDidMount() {
+    }
     render() {
         return (
             <ScrollView style={globalStyle.fullView}>
                 <Header title={"Contact us"} leftPressed={() => this.props.navigation.openDrawer()} />
-                <View style={[globalStyle.bodyWrap,{paddingBottom:30}]}>
+                <View style={[globalStyle.bodyWrap, { paddingBottom: 30 }]}>
                     <CardView>
                         <View style={styles.contactViewWrap}>
                             <View style={styles.contactView}>
@@ -26,7 +33,7 @@ class ContactPage extends Component {
                             </View>
                             <View style={[styles.contactView, { justifyContent: 'flex-end' }]}>
                                 <Text style={styles.mailText}>
-                                    jcierodeexcell@gmail.com
+                                    {this.state.mail}
                                 </Text>
                                 <Image source={images.icons.Contact_us_mail_icon} style={styles.contactIcon} />
 
@@ -34,14 +41,14 @@ class ContactPage extends Component {
                             <View style={styles.contactView}>
                                 <Image source={images.icons.Contact_us_call_icon} style={styles.contactIcon} />
                                 <Text style={styles.numberText}>
-                                    Ind 90036-71434
+                                    Ind {this.state.number}
                                 </Text>
                             </View>
                         </View>
                         <View style={styles.mapView}>
                             <Text style={styles.mapTitle}>Google map</Text>
                         </View>
-                        <View style={{ marginLeft: -10, marginRight: -10,paddingBottom:30 }}>
+                        <View style={{ marginLeft: -10, marginRight: -10, paddingBottom: 30 }}>
                             <WebView source={{
                                 html: '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3911.7375785446475!2d77.7102684!3d11.3538683!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96f325f83fe21%3A0x9a05f5c71e68d558!2sJunior%20Chamber%20International!5e0!3m2!1sen!2sin!4v1576318116100!5m2!1sen!2sin" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>'
                             }}
@@ -80,14 +87,14 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     addressText: {
-        fontSize: 15,
+        fontSize: 13,
         lineHeight: 25,
         marginLeft: 30,
         fontFamily: fonts.regular,
         color: colors.textColor,
     },
     mailText: {
-        fontSize: 15,
+        fontSize: 13,
         lineHeight: 25,
         letterSpacing: 2,
         marginRight: 30,
@@ -95,7 +102,7 @@ const styles = StyleSheet.create({
         fontFamily: fonts.regular
     },
     numberText: {
-        fontSize: 15,
+        fontSize: 13,
         letterSpacing: 2,
         lineHeight: 25,
         marginLeft: 30,
