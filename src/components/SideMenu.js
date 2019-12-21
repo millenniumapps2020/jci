@@ -10,6 +10,7 @@ import {
 // import styles from '../styles/sideMenuStyles';
 import { images, colors, globalStyle, fonts } from '../res';
 
+var { width, height } = Dimensions.get('window');
 
 var menuData = [
     { name: 'Dashboard', icon: '', action: 'DashboardPage' },
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
         paddingLeft: 5,
         marginLeft: 10,
         color: colors.SidebarFontColor,
-        fontSize: 17,
+        fontSize: width*(3.5/100),
         fontFamily: fonts.SemiBold
     },
     sideMenuItemIcon: {

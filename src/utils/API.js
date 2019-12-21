@@ -27,6 +27,7 @@ export const POST = (sub_url_key, bodyData, callback) => {
             callback('error', responseData.message);
         }
     }).catch((e) => {
+        callback('error', 'Catch Error');
         console.log(e)
     })
 }

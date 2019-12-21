@@ -23,7 +23,6 @@ export default createDrawerNavigator({
     initialRouteName : 'DashboardPage',
     drawerWidth: (width * 0.8),
     defaultNavigationOptions: {
-        gesturesEnabled: false,
     }
 
 })

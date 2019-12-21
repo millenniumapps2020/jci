@@ -2,13 +2,15 @@ import React, { Component, Fragment } from 'react'
 
 import {
     StyleSheet, View, ImageBackground, Text,
-    TextInput, FlatList, Image, TouchableOpacity
+    TextInput, FlatList, Image, TouchableOpacity,
+    TouchableWithoutFeedback
 } from 'react-native';
 
 import { connect } from 'react-redux';
 import { loaderActions } from '../../redux/actions'
 
 import { POST } from '../../utils/API';
+import Constants from '../../utils/Constants';
 
 import { colors } from '../../res'
 import { SearchIcon } from '../../components/common/Icons'
@@ -128,13 +130,13 @@ class MembersComponent extends Component {
                         <View style={styles.bottomViewContent}>
                             <View style={styles.bDayView}>
                                 <Image source={images.icons.cakeIcon} style={styles.bdayImg} />
-                                <Text style={styles.bottomLabel}>Birthday</Text>
-                                <Text style={styles.bottomVal}>{item.dob}</Text>
+                                {/* <Text style={styles.bottomLabel}>Birthday</Text> */}
+                                <Text style={styles.bottomVal}>{Constants.formatDate(item.dob)}</Text>
                             </View>
                             <View style={styles.weddingView}>
                                 <Image source={images.icons.coupleIcon} style={styles.bdayImg} />
-                                <Text style={styles.bottomLabel}>Wedding anniversary</Text>
-                                <Text style={styles.bottomVal}>{item.wedding_date}</Text>
+                                {/* <Text style={styles.bottomLabel}>Wedding anniversary</Text> */}
+                                <Text style={styles.bottomVal}>{Constants.formatDate(item.wedding_date)}</Text>
                             </View>
                         </View>
                     </ImageBackground>
@@ -149,41 +151,41 @@ class MembersComponent extends Component {
         return (
             <View style={globalStyle.fullView}>
                 <Header title={"Members"} leftPressed={() => this.props.navigation.openDrawer()} />
-                <View style={globalStyle.bodyWrap}>
-                    <View style={styles.searchInputView}>
-                        <TextInput
-                            value={this.state.searchString}
-                            style={styles.searchInput}
-                            placeholder={PLACE_HOLDERS.MEMBER_SEARCH}
-                            onChangeText={(e) => this.onSearchMember(e)}
-                            onSubmitEditing={this.onEndEdit}
-                            returnKeyType="search"
-                            onBlur={this.obBlurInput}
-                        />
-                        <TouchableOpacity onPress={this.getMemberList}>
-                            <SearchIcon style={styles.searchIcon} />
-                        </TouchableOpacity>
-                    </View>
-
-                    {
-                        membersList.length ?
-                            <FlatList
-                                data={membersList}
-                                renderItem={this.memberListRender}
-                                keyExtractor={(item, index) => ("memberList" + index)}
+                <TouchableWithoutFeedback>
+                    <View style={globalStyle.bodyWrap}>
+                        <View style={styles.searchInputView}>
+                            <TextInput
+                                value={this.state.searchString}
+                                style={styles.searchInput}
+                                placeholder={PLACE_HOLDERS.MEMBER_SEARCH}
+                                onChangeText={(e) => this.onSearchMember(e)}
+                                onSubmitEditing={this.onEndEdit}
+                                returnKeyType="search"
+                                onBlur={this.obBlurInput}
                             />
-                            :
-                            loading ?
-                                <View style={styles.msgTextView}>
-                                    <Text>Loading ...</Text>
-                                </View>
-                                :
-                                <View style={styles.msgTextView}>
-                                    <Text>No data found</Text>
-                                </View>
-                    }
+                            <SearchIcon style={styles.searchIcon} onPress={this.getMemberList} />
+                        </View>
 
-                </View>
+                        {
+                            membersList.length ?
+                                <FlatList
+                                    data={membersList}
+                                    renderItem={this.memberListRender}
+                                    keyExtractor={(item, index) => ("memberList" + index)}
+                                />
+                                :
+                                loading ?
+                                    <View style={styles.msgTextView}>
+                                        <Text>Loading ...</Text>
+                                    </View>
+                                    :
+                                    <View style={styles.msgTextView}>
+                                        <Text>No data found</Text>
+                                    </View>
+                        }
+
+                    </View>
+                </TouchableWithoutFeedback>
             </View>
         )
     }
@@ -209,10 +211,9 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     searchIcon: {
+        zIndex: 50000,
         position: "absolute",
         right: 10,
-        top: -10,
-
         height: 20,
         width: 20
     },
@@ -229,7 +230,7 @@ const styles = StyleSheet.create({
         flexDirection: "row"
     },
     detailsVal_name: {
-        fontSize: 15,
+        fontSize: 12,
         fontFamily: fonts.SemiBold
     },
     detailsVal: {
@@ -281,6 +282,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     bottomVal: {
+        marginLeft: 20,
         fontSize: 10,
         color: "#ffffff",
         fontWeight: "bold"
@@ -289,7 +291,7 @@ const styles = StyleSheet.create({
         flex: 4,
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-around",
+        justifyContent: "flex-start",
         paddingLeft: 8,
         paddingRight: 8,
         paddingTop: 5,
@@ -299,7 +301,7 @@ const styles = StyleSheet.create({
         flex: 6,
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-around",
+        justifyContent: "flex-start",
         paddingLeft: 8,
         paddingRight: 10,
         paddingTop: 5,

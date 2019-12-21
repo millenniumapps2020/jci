@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { Platform, StyleSheet, Text, View, Image, TouchableOpacity, ScrollView,Dimensions } from 'react-native';
 import { WebView } from 'react-native-webview';
-
 import { images, colors, globalStyle, fonts } from '../../res/';
 
 import Header from '../../components/Header'
 import CardView from '../../components/CardView'
 
+var { width, height } = Dimensions.get('window');
 class ContactPage extends Component {
     state = {
         mail: 'jcierodeexcell@gmail.com',
@@ -87,14 +87,14 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     addressText: {
-        fontSize: 13,
+        fontSize: width*(3/100),
         lineHeight: 25,
         marginLeft: 30,
         fontFamily: fonts.regular,
         color: colors.textColor,
     },
     mailText: {
-        fontSize: 13,
+        fontSize: width*(3/100),
         lineHeight: 25,
         letterSpacing: 2,
         marginRight: 30,
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         fontFamily: fonts.regular
     },
     numberText: {
-        fontSize: 13,
+        fontSize: width*(3/100),
         letterSpacing: 2,
         lineHeight: 25,
         marginLeft: 30,

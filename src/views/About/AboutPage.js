@@ -13,8 +13,8 @@ import { POST } from '../../utils/API';
 class AboutPage extends Component {
     state = {
         aboutDetails: [{
-            "description": "JCI is a non-profit organization of young active citizens age 18 to 40 who are engaged and committed to creating impact in their communities. Active citizens are individuals invested in the future of our world. JCI gathers active citizens from all sectors of society. We develop the skills, knowledge and understanding to make informed decisions and take action. As globally minded young people, we all have rights, responsibilities and share goals. We find targeted solutions to local issues benefitting our communities, our world and our future. Embracing new ideas, collaboration and diversity, we have the passion and courage to address the critical challenges of our time.",
-            "image_url": "https://www.gracemarketing.in/jcierode.com/images/test.jpg"
+            "description": "",
+            "image_url": ""
         }]
     }
 

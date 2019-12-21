@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { Platform, StyleSheet, Text, View, Image, TouchableOpacity, BackHandler, } from 'react-native';
 import { images, colors, globalStyle, fonts } from '../../res/';
 import { connect } from 'react-redux';
 import { loaderActions } from '../../redux/actions'
+import { withNavigationFocus } from 'react-navigation';
+
 
 import { POST } from '../../utils/API';
 import Constants from '../../utils/Constants';
@@ -15,9 +17,18 @@ class DashboardPage extends Component {
     state = {
         eventList: []
     }
-    componentDidMount() {
+    componentDidMount(prevProps) {
         this.intialApiCall();
+
+        BackHandler.addEventListener('hardwareBackPress', (data) => {
+            if (this.props.isFocused) {
+                return true;
+            }
+        });
     }
+
+
+
     intialApiCall() {
         var body = {}
         this.props.Loader(true);
@@ -28,7 +39,7 @@ class DashboardPage extends Component {
         if (key == "success") {
             this.setState({ eventList: data })
         } else {
-            errorMessage(data)
+            errorMessage(data);
         }
     }
     errorMessage(error) {
@@ -77,11 +88,15 @@ class DashboardPage extends Component {
                 <Header title={"Dashboard"} subTitle={"Upcoming Events"} leftPressed={() => this.props.navigation.openDrawer()} />
                 <View style={globalStyle.bodyWrap}>
                     {console.log(this.state.eventList)}
-                    <FlatList
+                    {this.state.eventList.length > 0 ? <FlatList
                         data={this.state.eventList}
                         renderItem={this.renderEventItem}
                         keyExtractor={(item, index) => (item.key = 'eventList' + index)}
-                    />
+                    /> :
+                        <View style={globalStyle.container}>
+                            <Text>No data found</Text>
+                        </View>
+                    }
 
                 </View>
             </View >
@@ -99,5 +114,5 @@ const styles = StyleSheet.create({
 })
 
 
-export default connect(null, { ...loaderActions })(DashboardPage);
+export default withNavigationFocus(connect(null, { ...loaderActions })(DashboardPage));
 

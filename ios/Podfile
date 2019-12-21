@@ -39,7 +39,9 @@ target 'jci' do
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
 
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
-
+  
+  pod 'Firebase/Analytics'
+  
   target 'jciTests' do
     inherit! :search_paths
     # Pods for testing

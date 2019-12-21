@@ -11,26 +11,20 @@ import {
 
 import { connect } from 'react-redux';
 import { loaderActions } from '../../redux/actions'
-
 import { POST } from '../../utils/API';
+import Constants from '../../utils/Constants';
 
 import { images, globalStyle, fonts, colors } from '../../res';
 
 class ProjectDetailsComponent extends Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            details: '',
-            loading: false
-        }
+    state = {
+        details: '',
+        loading: false
     }
 
+
     componentDidMount() {
-        this.props.navigation.addListener('willFocus', () => {
-            this.getProjectDetails()
-        });
+        this.getProjectDetails()
     }
 
     getProjectDetails = () => {
@@ -60,6 +54,8 @@ class ProjectDetailsComponent extends Component {
     render() {
         const { details, loading } = this.state;
         return (
+            // details.create_date
+
             <ScrollView>
                 {
                     details ?
@@ -72,6 +68,7 @@ class ProjectDetailsComponent extends Component {
                                     />
                                     <Text style={styles.location}>{details.client_name}</Text>
                                 </View>
+                                {details.create_date ? <Text style={styles.dateText}>{Constants.formatDate(details.create_date.split(' ')[0]) + ' ' + Constants.formatAMPM(details.create_date.split(' ')[1])}</Text> : null}
                             </View>
                             <View style={styles.hrLine}></View>
 
@@ -83,14 +80,15 @@ class ProjectDetailsComponent extends Component {
 
                             <View style={styles.galleryView}>
                                 <Text style={styles.galleryText}>Gallery</Text>
+                                {/*
                                 <View style={styles.subHeadingRow}>
-                                    {/* <Text style={styles.gallerySubText}>Recent photos</Text> */}
+                                    <Text style={styles.gallerySubText}>Recent photos</Text> 
                                     <TouchableOpacity style={{ width: '100%', alignItems: "flex-end" }}>
                                         <Text style={styles.seeAllBtn}>See all</Text>
                                     </TouchableOpacity>
                                 </View>
+                                */}
                                 <View style={styles.imgView}>
-                                    {console.log(details.images)}
                                     {
                                         details.images && details.images.length > 0 ?
                                             details.images.map((item, index) => {
@@ -155,6 +153,12 @@ const styles = StyleSheet.create({
         fontFamily: fonts.SemiBold,
         paddingLeft: 10
     },
+    dateText: {
+        marginTop: 10,
+        fontSize: 13,
+        color: colors.textColor,
+        fontFamily: fonts.regular,
+    },
     hrLine: {
         height: 1,
         width: "80%",
@@ -193,13 +197,12 @@ const styles = StyleSheet.create({
     },
     imgView: {
         width: "100%",
-        flexDirection: "row",
-        paddingBottom: 10,
     },
     image: {
-        height: 70,
-        width: "25%",
-        margin: 1
+        width: "100%",
+        height: 200,
+        resizeMode: 'cover',
+        marginTop: 10
     },
     msgTextView: {
         height: "100%",

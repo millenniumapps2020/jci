@@ -7,7 +7,7 @@ class Constants {
     static formatDate(input) {
         var datePart = input.match(/\d+/g),
             year = datePart[0],// get only two digits
-            month = monthNames[(+datePart[1])-1],
+            month = monthNames[(+datePart[1]) - 1],
             day = datePart[2];
 
         return day + ' ' + month + ' ' + year;
@@ -19,7 +19,7 @@ class Constants {
         var ampm = hours >= 12 ? 'PM' : 'AM';
         hours = hours % 12;
         hours = hours ? hours : 12; // the hour '0' should be '12'
-        minutes = minutes < 10 ? '0' + minutes : minutes;
+        minutes = (minutes > 10) ? '0' + minutes : minutes;
         var strTime = hours + ':' + minutes + ' ' + ampm;
         return strTime;
     }
