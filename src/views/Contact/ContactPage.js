@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Image, TouchableOpacity, ScrollView,Dimensions } from 'react-native';
+import { Platform, StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { images, colors, globalStyle, fonts } from '../../res/';
+import { POST } from '../../utils/API';
+
+import { connect } from 'react-redux';
+import { loaderActions } from '../../redux/actions'
 
 import Header from '../../components/Header'
 import CardView from '../../components/CardView'
@@ -9,13 +13,39 @@ import CardView from '../../components/CardView'
 var { width, height } = Dimensions.get('window');
 class ContactPage extends Component {
     state = {
-        mail: 'jcierodeexcell@gmail.com',
-        number: '90036-71434'
-
+        mail: 'hariprashad@live.com',
+        number: '9600227272',
+        address: 'JFS Hari Prashad S V, \nPresident, \n14/22A Uzhavan Nagar, \nSurampatti, Erode 638009',
+        location: '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3911.7375785446475!2d77.7102684!3d11.3538683!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96f325f83fe21%3A0x9a05f5c71e68d558!2sJunior%20Chamber%20International!5e0!3m2!1sen!2sin!4v1576318116100!5m2!1sen!2sin" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>'
     }
     componentDidMount() {
+        this.props.Loader(true);
+        this.setState({ membersList: [], loading: true })
+        let body = {}
+        POST('contact', body, this.apicallBack)
+    }
+
+    apicallBack = (key, data) => {
+        this.props.Loader(false);
+        console.log(data)
+        if (key == "success") {
+            // this.setState({
+            //     mail: '',
+            //     number: '',
+            //     address: '',
+            //     location: ''
+            // })
+        } else {
+            this.setState({ loading: false })
+            errorMessage(data)
+        }
+    }
+
+    errorMessage(error) {
+        alert(error)
     }
     render() {
+        var { address, number, mail, location } = this.state;
         return (
             <ScrollView style={globalStyle.fullView}>
                 <Header title={"Contact us"} leftPressed={() => this.props.navigation.openDrawer()} />
@@ -25,15 +55,12 @@ class ContactPage extends Component {
                             <View style={styles.contactView}>
                                 <Image source={images.icons.Contact_us_location_icon} style={styles.contactIcon} />
                                 <Text style={styles.addressText}>
-                                    JCI ERODE EXCELL (JAYCEES) {"\n"}
-                                    34, RAJAJI STREET,{"\n"}
-                                    VEERAPPAN CHATHIRAM,{"\n"}
-                                    ERODE-638004, TAMILNADU{"\n"}
+                                    {address}
                                 </Text>
                             </View>
                             <View style={[styles.contactView, { justifyContent: 'flex-end' }]}>
                                 <Text style={styles.mailText}>
-                                    {this.state.mail}
+                                    {mail}
                                 </Text>
                                 <Image source={images.icons.Contact_us_mail_icon} style={styles.contactIcon} />
 
@@ -41,7 +68,7 @@ class ContactPage extends Component {
                             <View style={styles.contactView}>
                                 <Image source={images.icons.Contact_us_call_icon} style={styles.contactIcon} />
                                 <Text style={styles.numberText}>
-                                    Ind {this.state.number}
+                                    Ind {number}
                                 </Text>
                             </View>
                         </View>
@@ -50,7 +77,7 @@ class ContactPage extends Component {
                         </View>
                         <View style={{ marginLeft: -10, marginRight: -10, paddingBottom: 30 }}>
                             <WebView source={{
-                                html: '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3911.7375785446475!2d77.7102684!3d11.3538683!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96f325f83fe21%3A0x9a05f5c71e68d558!2sJunior%20Chamber%20International!5e0!3m2!1sen!2sin!4v1576318116100!5m2!1sen!2sin" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>'
+                                html: location
                             }}
                                 style={{ width: "100%", height: 200 }} />
                         </View>
@@ -87,14 +114,14 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     addressText: {
-        fontSize: width*(3/100),
+        fontSize: width * (3 / 100),
         lineHeight: 25,
         marginLeft: 30,
         fontFamily: fonts.regular,
         color: colors.textColor,
     },
     mailText: {
-        fontSize: width*(3/100),
+        fontSize: width * (3 / 100),
         lineHeight: 25,
         letterSpacing: 2,
         marginRight: 30,
@@ -102,7 +129,7 @@ const styles = StyleSheet.create({
         fontFamily: fonts.regular
     },
     numberText: {
-        fontSize: width*(3/100),
+        fontSize: width * (3 / 100),
         letterSpacing: 2,
         lineHeight: 25,
         marginLeft: 30,
@@ -118,4 +145,5 @@ const styles = StyleSheet.create({
     }
 
 })
-export default (ContactPage);
+
+export default connect(null, { ...loaderActions })(ContactPage)

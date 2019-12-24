@@ -87,7 +87,6 @@ class DashboardPage extends Component {
             <View style={globalStyle.fullView}>
                 <Header title={"Dashboard"} subTitle={"Upcoming Events"} leftPressed={() => this.props.navigation.openDrawer()} />
                 <View style={globalStyle.bodyWrap}>
-                    {console.log(this.state.eventList)}
                     {this.state.eventList.length > 0 ? <FlatList
                         data={this.state.eventList}
                         renderItem={this.renderEventItem}

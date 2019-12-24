@@ -18,6 +18,78 @@ import { PLACE_HOLDERS } from '../../res/strings'
 import { images, globalStyle, fonts } from '../../res';
 import Header from '../../components/Header'
 
+class MemberListItem extends React.PureComponent {
+
+    render() {
+        var item = this.props.item;
+        var memberKey = this.props.memberKey;
+        return (<View key={memberKey} style={styles.memberView}>
+            <View style={styles.detailsView}>
+                <View style={[styles.imageView, globalStyle.centerWrap]}>
+                    {item.profile_image != '' ? <Image source={{ uri: item.profile_image }}
+                        style={styles.memberImage}
+                    /> : null}
+                </View>
+                <View style={styles.detailsViewContent}>
+                    <View style={[styles.detailsRow1, styles.detailsRow]}>
+                        <View style={styles.detailsLeft}>
+                            <Text style={styles.label}>Name</Text>
+                            <Text style={styles.detailsVal_name}>{item.name}</Text>
+                        </View>
+                        <View style={styles.detailsRight}>
+                            <Text style={styles.label}>Designation</Text>
+                            <Text style={styles.detailsVal}>{item.designation}</Text>
+                        </View>
+                    </View>
+                    <View style={[styles.detailsRow2, styles.detailsRow]}>
+                        <View style={styles.detailsLeft}>
+                            <Text style={styles.label}>Blood Group</Text>
+                            <Text style={styles.detailsVal}>{item.blood_group}</Text>
+                        </View>
+                        <View style={styles.detailsRight}>
+                            <Text style={styles.label}>Phone number</Text>
+                            <Text style={styles.detailsVal}>{item.phone_number}</Text>
+                        </View>
+                    </View>
+                    <View style={[styles.detailsRow2, styles.detailsRow]}>
+                        <View style={styles.detailsLeft}>
+                            <Text style={styles.label}>Address</Text>
+                            <Text style={styles.detailsVal}>{item.address}</Text>
+                        </View>
+                        <View style={styles.detailsRight}>
+                            <Text style={styles.label}>E-mail address</Text>
+                            <Text style={styles.detailsVal}>{item.email_address}</Text>
+                        </View>
+                    </View>
+                </View>
+            </View>
+            <View style={styles.bottomView}>
+                <ImageBackground style={styles.bottomDetails}
+                    resizeMode="stretch"
+                    source={images.icons.birthDayTag}
+                >
+                    <View style={styles.bottomViewContent}>
+                        {item.dob != "" ?
+                            <View style={styles.bDayView}>
+                                <Image source={images.icons.cakeIcon} style={styles.bdayImg} />
+                                {/* <Text style={styles.bottomLabel}>Birthday</Text> */}
+                                <Text style={styles.bottomVal}>{Constants.formatDate(item.dob)}</Text>
+                            </View> : null}
+                        {item.wedding_date != "" ?
+                            <View style={styles.weddingView}>
+                                <Image source={images.icons.coupleIcon} style={styles.bdayImg} />
+                                {/* <Text style={styles.bottomLabel}>Wedding anniversary</Text> */}
+                                <Text style={styles.bottomVal}>{Constants.formatDate(item.wedding_date)}</Text>
+                            </View> : null}
+                    </View>
+                </ImageBackground>
+            </View>
+        </View>
+        );
+    }
+}
+
+
 class MembersComponent extends Component {
 
     constructor(props) {
@@ -43,7 +115,7 @@ class MembersComponent extends Component {
         this.setState({ membersList: [], loading: true })
         let body = {
             "search": this.state.searchString,
-            "limit": "10",
+            "limit": "500",
             "offset": "0"
         }
         POST('members', body, this.apicallBack)
@@ -81,68 +153,12 @@ class MembersComponent extends Component {
     memberListRender(data) {
         var item = data.item;
         var index = data.index;
-        return (
-            <View key={'memberList' + index} style={styles.memberView}>
-                <View style={styles.detailsView}>
-                    <View style={[styles.imageView, globalStyle.centerWrap]}>
-                        <Image source={{ uri: item.profile_image }}
-                            style={styles.memberImage}
-                        />
-                    </View>
-                    <View style={styles.detailsViewContent}>
-                        <View style={[styles.detailsRow1, styles.detailsRow]}>
-                            <View style={styles.detailsLeft}>
-                                <Text style={styles.label}>Name</Text>
-                                <Text style={styles.detailsVal_name}>{item.name}</Text>
-                            </View>
-                            <View style={styles.detailsRight}>
-                                <Text style={styles.label}>Designation</Text>
-                                <Text style={styles.detailsVal}>{item.designation}</Text>
-                            </View>
-                        </View>
-                        <View style={[styles.detailsRow2, styles.detailsRow]}>
-                            <View style={styles.detailsLeft}>
-                                <Text style={styles.label}>Blood Group</Text>
-                                <Text style={styles.detailsVal}>{item.blood_group}</Text>
-                            </View>
-                            <View style={styles.detailsRight}>
-                                <Text style={styles.label}>Phone number</Text>
-                                <Text style={styles.detailsVal}>{item.phone_number}</Text>
-                            </View>
-                        </View>
-                        <View style={[styles.detailsRow2, styles.detailsRow]}>
-                            <View style={styles.detailsLeft}>
-                                <Text style={styles.label}>Address</Text>
-                                <Text style={styles.detailsVal}>{item.address}</Text>
-                            </View>
-                            <View style={styles.detailsRight}>
-                                <Text style={styles.label}>E-mail address</Text>
-                                <Text style={styles.detailsVal}>{item.email_address}</Text>
-                            </View>
-                        </View>
-                    </View>
-                </View>
-                <View style={styles.bottomView}>
-                    <ImageBackground style={styles.bottomDetails}
-                        resizeMode="stretch"
-                        source={images.icons.birthDayTag}
-                    >
-                        <View style={styles.bottomViewContent}>
-                            <View style={styles.bDayView}>
-                                <Image source={images.icons.cakeIcon} style={styles.bdayImg} />
-                                {/* <Text style={styles.bottomLabel}>Birthday</Text> */}
-                                <Text style={styles.bottomVal}>{Constants.formatDate(item.dob)}</Text>
-                            </View>
-                            <View style={styles.weddingView}>
-                                <Image source={images.icons.coupleIcon} style={styles.bdayImg} />
-                                {/* <Text style={styles.bottomLabel}>Wedding anniversary</Text> */}
-                                <Text style={styles.bottomVal}>{Constants.formatDate(item.wedding_date)}</Text>
-                            </View>
-                        </View>
-                    </ImageBackground>
-                </View>
-            </View>
-        )
+        return (<MemberListItem
+            memberKey={'fullMemberList' + index}
+            item={item}
+            index={index}
+        />)
+        // return (<View style={{ backgroundColor: 'red', marginTop: 20, width: '100%', height: 100 }}></View>);
     }
 
     render() {
@@ -151,41 +167,31 @@ class MembersComponent extends Component {
         return (
             <View style={globalStyle.fullView}>
                 <Header title={"Members"} leftPressed={() => this.props.navigation.openDrawer()} />
-                <TouchableWithoutFeedback>
-                    <View style={globalStyle.bodyWrap}>
-                        <View style={styles.searchInputView}>
-                            <TextInput
-                                value={this.state.searchString}
-                                style={styles.searchInput}
-                                placeholder={PLACE_HOLDERS.MEMBER_SEARCH}
-                                onChangeText={(e) => this.onSearchMember(e)}
-                                onSubmitEditing={this.onEndEdit}
-                                returnKeyType="search"
-                                onBlur={this.obBlurInput}
-                            />
-                            <SearchIcon style={styles.searchIcon} onPress={this.getMemberList} />
-                        </View>
-
-                        {
-                            membersList.length ?
-                                <FlatList
-                                    data={membersList}
-                                    renderItem={this.memberListRender}
-                                    keyExtractor={(item, index) => ("memberList" + index)}
-                                />
-                                :
-                                loading ?
-                                    <View style={styles.msgTextView}>
-                                        <Text>Loading ...</Text>
-                                    </View>
-                                    :
-                                    <View style={styles.msgTextView}>
-                                        <Text>No data found</Text>
-                                    </View>
-                        }
-
+                <View style={globalStyle.bodyWrap}>
+                    <View style={styles.searchInputView}>
+                        <TextInput
+                            value={this.state.searchString}
+                            style={styles.searchInput}
+                            placeholder={PLACE_HOLDERS.MEMBER_SEARCH}
+                            onChangeText={(e) => this.onSearchMember(e)}
+                            onSubmitEditing={this.onEndEdit}
+                            returnKeyType="search"
+                            onBlur={this.obBlurInput}
+                        />
+                        <SearchIcon style={styles.searchIcon} onPress={this.getMemberList} />
                     </View>
-                </TouchableWithoutFeedback>
+                    {membersList.length > 0 ?
+                        <FlatList
+                            data={membersList}
+                            renderItem={this.memberListRender}
+                            keyExtractor={(item, index) => ("memberList" + index)}
+                        />
+                        :
+                        <View style={styles.msgTextView}>
+                            <Text>No data found</Text>
+                        </View>
+                    }
+                </View>
             </View>
         )
     }
