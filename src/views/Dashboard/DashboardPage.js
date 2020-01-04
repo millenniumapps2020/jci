@@ -4,6 +4,7 @@ import { images, colors, globalStyle, fonts } from '../../res/';
 import { connect } from 'react-redux';
 import { loaderActions } from '../../redux/actions'
 import { withNavigationFocus } from 'react-navigation';
+import RNMinimizeApp from 'react-native-minimize';
 
 
 import { POST } from '../../utils/API';
@@ -15,13 +16,15 @@ import { FlatList } from 'react-native-gesture-handler';
 
 class DashboardPage extends Component {
     state = {
-        eventList: []
+        eventList: [],
+        loading: true,
     }
     componentDidMount(prevProps) {
         this.intialApiCall();
 
         BackHandler.addEventListener('hardwareBackPress', (data) => {
             if (this.props.isFocused) {
+                RNMinimizeApp.minimizeApp();
                 return true;
             }
         });
@@ -32,9 +35,11 @@ class DashboardPage extends Component {
     intialApiCall() {
         var body = {}
         this.props.Loader(true);
+        this.setState({ loading: true })
         POST('getEvents', body, this.apicallBack)
     }
     apicallBack = (key, data) => {
+        this.setState({ loading: false })
         this.props.Loader(false);
         if (key == "success") {
             this.setState({ eventList: data })
@@ -93,7 +98,7 @@ class DashboardPage extends Component {
                         keyExtractor={(item, index) => (item.key = 'eventList' + index)}
                     /> :
                         <View style={globalStyle.container}>
-                            <Text>No data found</Text>
+                            {this.state.loading ? null : <Text>No data found</Text>}
                         </View>
                     }
 

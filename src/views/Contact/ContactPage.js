@@ -27,14 +27,13 @@ class ContactPage extends Component {
 
     apicallBack = (key, data) => {
         this.props.Loader(false);
-        console.log(data)
         if (key == "success") {
-            // this.setState({
-            //     mail: '',
-            //     number: '',
-            //     address: '',
-            //     location: ''
-            // })
+            this.setState({
+                mail:data[0].mail,
+                number: data[0].number,
+                address: data[0].address,
+                location:data[0].location
+            })
         } else {
             this.setState({ loading: false })
             errorMessage(data)

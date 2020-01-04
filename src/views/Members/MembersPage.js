@@ -188,7 +188,7 @@ class MembersComponent extends Component {
                         />
                         :
                         <View style={styles.msgTextView}>
-                            <Text>No data found</Text>
+                            {this.state.loading ? null : <Text>No data found</Text>}
                         </View>
                     }
                 </View>
