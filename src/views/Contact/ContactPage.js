@@ -36,7 +36,7 @@ class ContactPage extends Component {
             })
         } else {
             this.setState({ loading: false })
-            errorMessage(data)
+            this.errorMessage(data)
         }
     }
 

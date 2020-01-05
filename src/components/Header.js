@@ -18,7 +18,8 @@ class Header extends Component {
                                 />
                             </TouchableOpacity>
                             <Text style={styles.headerTitle}>{this.props.title}</Text>
-                            <Image source={images.common.white_logo} style={styles.logoIcon} />
+                            {this.props.title != "JCI Erode" ?
+                                <Image source={images.common.white_logo} style={styles.logoIcon} /> : <View style={styles.logoIcon}></View>}
                         </View>
                         {this.props.subTitle ?
                             <View style={styles.subHeaderWrap}>

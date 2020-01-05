@@ -9,17 +9,18 @@ import {
 } from 'react-native';
 // import styles from '../styles/sideMenuStyles';
 import { images, colors, globalStyle, fonts } from '../res';
-
 var { width, height } = Dimensions.get('window');
 
 var menuData = [
-    { name: 'Dashboard', icon: '', action: 'DashboardPage' },
+    { name: 'Home', icon: '', action: 'HomePage' },
+    { name: 'What next?', icon: '', action: 'DashboardPage' },
     { name: 'Members', icon: '', action: 'MemberPage' },
     { name: 'Permanent Projects', icon: '', action: 'PermanentProjectPage' },
     { name: 'Projects', icon: '', action: 'ProjectPage' },
     { name: 'About us', icon: '', action: 'AboutPage' },
     { name: 'Contact us', icon: '', action: 'ContactPage' },
-]
+    { name: 'Privilege', icon: '', action: 'PrivilegePage' }
+];
 
 const MenuRow = ({ item, onPress }) => {
     var IconName = item.icon;
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
         paddingLeft: 5,
         marginLeft: 10,
         color: colors.SidebarFontColor,
-        fontSize: width*(3.5/100),
+        fontSize: width * (3.5 / 100),
         fontFamily: fonts.SemiBold
     },
     sideMenuItemIcon: {

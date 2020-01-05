@@ -6,5 +6,5 @@ export const services = {
     addDevices: 'api/devices/',
     contact: 'api/contact/',
     about: "api/about/",
-
+    privilege:'api/privilege/'
 }

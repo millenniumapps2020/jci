@@ -128,7 +128,7 @@ class MembersComponent extends Component {
             this.setState({ loading: false, membersList: data })
         } else {
             this.setState({ loading: false })
-            errorMessage(data)
+            this.errorMessage(data)
         }
     }
 

@@ -2,8 +2,8 @@ import { NetInfo } from 'react-native'
 import { services } from './services';
 
 const APP_TYPE = 1;
-const PRODUCTION_BASE_URL = 'https://www.gracemarketing.in/jcierode.com/';
-const DEVELOPMENT_BASE_URL = 'https://www.gracemarketing.in/jcierode.com/';
+const PRODUCTION_BASE_URL = 'https://jcierode.in/';
+const DEVELOPMENT_BASE_URL = 'https://jcierode.in/';
 
 const URL = APP_TYPE == 1 ? PRODUCTION_BASE_URL : DEVELOPMENT_BASE_URL;
 
@@ -21,6 +21,8 @@ export const POST = (sub_url_key, bodyData, callback) => {
     return fetch(base_url, data).then((response) => {
         return response.json();
     }).then((responseData) => {
+        console.log('responseData ',responseData)
+
         if (responseData.statusCode == 200) {
             callback('success', responseData.result);
         } else {

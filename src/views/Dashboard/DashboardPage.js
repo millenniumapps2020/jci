@@ -4,9 +4,6 @@ import { images, colors, globalStyle, fonts } from '../../res/';
 import { connect } from 'react-redux';
 import { loaderActions } from '../../redux/actions'
 import { withNavigationFocus } from 'react-navigation';
-import RNMinimizeApp from 'react-native-minimize';
-
-
 import { POST } from '../../utils/API';
 import Constants from '../../utils/Constants';
 
@@ -19,19 +16,9 @@ class DashboardPage extends Component {
         eventList: [],
         loading: true,
     }
-    componentDidMount(prevProps) {
+    componentDidMount() {
         this.intialApiCall();
-
-        BackHandler.addEventListener('hardwareBackPress', (data) => {
-            if (this.props.isFocused) {
-                RNMinimizeApp.minimizeApp();
-                return true;
-            }
-        });
     }
-
-
-
     intialApiCall() {
         var body = {}
         this.props.Loader(true);
@@ -44,7 +31,7 @@ class DashboardPage extends Component {
         if (key == "success") {
             this.setState({ eventList: data })
         } else {
-            errorMessage(data);
+            this.errorMessage(data);
         }
     }
     errorMessage(error) {
@@ -118,5 +105,5 @@ const styles = StyleSheet.create({
 })
 
 
-export default withNavigationFocus(connect(null, { ...loaderActions })(DashboardPage));
+export default connect(null, { ...loaderActions })(DashboardPage);
 

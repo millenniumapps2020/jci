@@ -7,12 +7,7 @@ export const images = {
     common: {
         logo: require('./images/common/logo.png'),
         white_logo: require('./images/common/white_logo.png'),
-        gallery_image_1: require('./images/common/gallery_image_1.jpg'),
-        gallery_image_2: require('./images/common/gallery_image_2.jpg'),
-        libraryImg_1: require('./images/common/library_1.jpg'),
-        libraryImg_2: require('./images/common/library_2.jpg'),
-        libraryImg_3: require('./images/common/library_3.jpeg'),
-        libraryImg_4: require('./images/common/library_4.jpeg')
+        banner: require('./images/common/banner.jpg'),
     },
     icons: {
         welcome_icon: require('./images/icons/welcome_icon.png'),
@@ -36,7 +31,14 @@ export const images = {
 
         detailsNavigateIcon: require('./images/icons/View_icon.png'),
         locationIcon: require('./images/icons/Location.png'),
-
-
+    },
+    menu:{
+        dashboard_list_icon: require('./images/menu/dashboard_list_icon.png'),
+        member_icon: require('./images/menu/member_icon.png'),
+        project_icon: require('./images/menu/project_icon.png'),
+        permanent_project_icon: require('./images/menu/permanent_project_icon.png'),
+        about_icon: require('./images/menu/about_icon.png'),
+        privilege_icon: require('./images/menu/privilege_icon.png'),
+        contact_icon: require('./images/menu/contact_icon.png'),
     }
 }

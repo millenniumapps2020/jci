@@ -56,7 +56,7 @@ class SplashPage extends Component {
         if (key == "success") {
             AsyncStorage.setItem('pushnotification', '1');
         } else {
-            errorMessage(data)
+            this.errorMessage(data)
         }
     }
 

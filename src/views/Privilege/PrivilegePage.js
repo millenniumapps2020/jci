@@ -10,7 +10,7 @@ import { loaderActions } from '../../redux/actions'
 import { POST } from '../../utils/API';
 
 
-class AboutPage extends Component {
+class PrivilegePage extends Component {
     state = {
         aboutDetails: [{
             "description": "",
@@ -21,7 +21,7 @@ class AboutPage extends Component {
     componentDidMount() {
         var body = {}
         this.props.Loader(true);
-        POST('about', body, this.apicallBack)
+        POST('privilege', body, this.apicallBack)
     }
     apicallBack = (key, data) => {
         this.props.Loader(false);
@@ -38,7 +38,6 @@ class AboutPage extends Component {
     renderAboutItem(data) {
         var item = data.item;
         var index = data.index;
-        console.log('images', item.image_url)
         return (
             <>
                 <Image source={{ uri: item.image_url }} style={{ height: 200, marginTop: index == 0 ? 0 : 20 }} resizeMode="stretch" />
@@ -53,8 +52,7 @@ class AboutPage extends Component {
     render() {
         return (
             <View style={globalStyle.fullView}>
-                <Header title={"About us"} leftPressed={() => this.props.navigation.openDrawer()} />
-
+                <Header title={"Privilege"} leftPressed={() => this.props.navigation.openDrawer()} />
                 <ScrollView style={globalStyle.bodyWrap}>
                     <CardView style={{ padding: 0 }}>
                         <FlatList
@@ -82,5 +80,5 @@ const styles = StyleSheet.create({
 
     }
 })
-export default connect(null, { ...loaderActions })(AboutPage);
+export default connect(null, { ...loaderActions })(PrivilegePage);
 
