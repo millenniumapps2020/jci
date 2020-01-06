@@ -28,7 +28,7 @@ class SplashPage extends Component {
 
             onNotification: function (notification) {
             },
-            senderID: "318413914416",
+            senderID: "478647774280",
             permissions: {
                 alert: true,
                 badge: true,
