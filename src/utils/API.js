@@ -18,6 +18,8 @@ export const POST = (sub_url_key, bodyData, callback) => {
         },
         body: JSON.stringify(bodyData)
     }
+    console.log(base_url,data)
+
     return fetch(base_url, data).then((response) => {
         return response.json();
     }).then((responseData) => {
@@ -29,7 +31,7 @@ export const POST = (sub_url_key, bodyData, callback) => {
             callback('error', responseData.message);
         }
     }).catch((e) => {
-        callback('error', 'Catch Error');
+        callback('error', e);
         console.log(e)
     })
 }

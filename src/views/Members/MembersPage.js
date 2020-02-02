@@ -35,6 +35,8 @@ class MemberListItem extends React.PureComponent {
                         <View style={styles.detailsLeft}>
                             <Text style={styles.label}>Name</Text>
                             <Text style={styles.detailsVal_name}>{item.name}</Text>
+                            {item.category != '' ? <Text style={styles.label}>Category</Text> : null}
+                            {item.category != '' ? <Text style={styles.detailsVal_name}>{item.category}</Text> : null}
                         </View>
                         <View style={styles.detailsRight}>
                             <Text style={styles.label}>Designation</Text>
@@ -180,6 +182,7 @@ class MembersComponent extends Component {
                         />
                         <SearchIcon style={styles.searchIcon} onPress={this.getMemberList} />
                     </View>
+                    {console.log('membersList', membersList)}
                     {membersList.length > 0 ?
                         <FlatList
                             data={membersList}
